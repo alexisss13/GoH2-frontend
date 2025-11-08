@@ -1,0 +1,17 @@
+{
+  "Landing": {
+    "brand": "GoH2",
+    "slogan": "La forma inteligente y social de <primary>monitorear tu hidratación</primary>.",
+    "ctaPrimary": "EMPIEZA AHORA",
+    "ctaSecondary": "YA TENGO UNA CUENTA"
+  },
+  "Footer": {
+    "copyright": "© {year} GoH2. Tecsup Proyectos."
+  },
+  "LanguageSwitcher": {
+    "label": "Cambiar idioma",
+    "es": "Español",
+    "en": "English",
+    "fr": "Français"
+  }
+}

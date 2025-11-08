@@ -1,7 +1,11 @@
+// next.config.mjs
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin('./i18n.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Opcional: Deshabilitar el modo estricto de React si causa problemas con librerías
-  // reactStrictMode: true,
+  // Otras configuraciones...
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

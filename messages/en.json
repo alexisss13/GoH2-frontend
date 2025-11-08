@@ -1,0 +1,17 @@
+{
+  "Landing": {
+    "brand": "GoH2",
+    "slogan": "The smart and social way to <primary>monitor your hydration</primary>.",
+    "ctaPrimary": "GET STARTED NOW",
+    "ctaSecondary": "I ALREADY HAVE AN ACCOUNT"
+  },
+  "Footer": {
+    "copyright": "© {year} GoH2. Tecsup Projects."
+  },
+  "LanguageSwitcher": {
+    "label": "Change language",
+    "es": "Spanish",
+    "en": "English",
+    "fr": "French"
+  }
+}

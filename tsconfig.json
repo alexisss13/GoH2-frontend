@@ -22,6 +22,7 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".", // Importante para que funcione el alias
     "paths": {
       "@/*": [
         "./*"
