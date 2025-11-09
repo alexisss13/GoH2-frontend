@@ -7,7 +7,8 @@ export default createMiddleware({
   // El idioma por defecto
   defaultLocale,
   // Oculta el prefijo '/es' de la URL, pero muestra '/en' y '/fr'
-  localePrefix: 'as-needed' 
+  localePrefix: 'as-needed',
+  localeDetection: true 
 });
 
 export const config = {
