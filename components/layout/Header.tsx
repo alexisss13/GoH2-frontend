@@ -1,23 +1,35 @@
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-import LanguageSwitcher from './LanguageSwitcher'; // Importamos el switcher
+import Image from 'next/image';
+import LanguageSwitcher from './LanguageSwitcher';
 
 /**
  * Header principal de la landing page.
- * Ahora incluye el selector de idioma.
+ * Actualizado para usar un logo en lugar de texto.
  */
 export default function Header() {
-  const t = useTranslations('Landing');
+  // Ya no usamos useTranslations aquí
 
   return (
     <header className="absolute top-0 left-0 w-full py-6 px-8 md:px-12 z-10">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo/Marca */}
-        <Link href="/" className="text-3xl font-bold text-white transition-opacity hover:opacity-80">
-          {t('brand')}
+        {/* Logo/Marca (Ahora es una imagen) */}
+        <Link 
+          href="/" 
+          className="transition-opacity hover:opacity-80"
+          aria-label="Ir al inicio" // Buena práctica de accesibilidad
+        >
+
+          <Image
+            src="/goh2-logo-horizontal.webp" 
+            alt="Logo GoH2"
+            width={105} // Ancho de ejemplo (ajústalo)
+            height={35} // Altura de ejemplo (ajústalo)
+            priority // Carga esta imagen primero
+            className="h-auto" // Mantiene la proporción
+          />
         </Link>
         
-        {/* Selector de Idioma */}
+        {/* Selector de Idioma (Tu componente) */}
         <LanguageSwitcher />
       </div>
     </header>

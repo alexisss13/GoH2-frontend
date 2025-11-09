@@ -13,6 +13,7 @@ const config: Config = {
         primary: {
           DEFAULT: "#0097B2", // Azul principal
           light: "#00B2CC", // Un tono más claro para hover
+          dark: "#007A8F",
         },
         gray: {
           light: "#C8C8C8", // Gris claro para UI

@@ -1,28 +1,47 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState, ChangeEvent } from 'react';
 
+// Iconos SVG
 const GlobeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-1 text-gray-light">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C13.18 7.083 14.135 7.5 15 7.5c.865 0 1.72-.417 2.416-1.036M15 7.5V3m3.375 4.5c.891 0 1.756.24 2.548.662M18.375 7.5V3m0 3.75c.609.328 1.125.79 1.5 1.337M19.875 10.5c.375.547.675 1.138.9 1.762" />
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
   </svg>
 );
 
+const ChevronDownIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+  </svg>
+);
+
+type LocaleInfo = {
+  code: 'es' | 'en' | 'fr';
+  nameKey: 'es' | 'en' | 'fr';
+  emoji: string;
+};
+
+const localesInfo: LocaleInfo[] = [
+  { code: 'es', nameKey: 'es', emoji: '🇪🇸' },
+  { code: 'en', nameKey: 'en', emoji: '🇺🇸' },
+  { code: 'fr', nameKey: 'fr', emoji: '🇫🇷' },
+];
+
 export default function LanguageSwitcher() {
   const t = useTranslations('LanguageSwitcher');
-  const locale = useLocale();
-  const router = useRouter();
+  const currentLocale = useLocale() as 'es' | 'en' | 'fr';
   const pathname = usePathname();
+  const router = useRouter();
   
-  const [currentLocale, setCurrentLocale] = useState(locale);
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Función para remover el locale del pathname
-  const getPathnameWithoutLocale = (path: string, currentLocale: string): string => {
+  const getPathnameWithoutLocale = (path: string): string => {
     const locales = ['es', 'en', 'fr'];
     
-    // Si el path empieza con /locale/, lo removemos
     for (const loc of locales) {
       if (path.startsWith(`/${loc}/`) || path === `/${loc}`) {
         return path.slice(loc.length + 1) || '/';
@@ -32,51 +51,88 @@ export default function LanguageSwitcher() {
     return path;
   };
 
+  // Efecto para persistencia (LocalStorage)
   useEffect(() => {
     const savedLocale = localStorage.getItem('goh2-locale');
-    if (savedLocale && savedLocale !== locale) {
-      const pathWithoutLocale = getPathnameWithoutLocale(pathname, locale);
+    if (savedLocale && savedLocale !== currentLocale) {
+      const pathWithoutLocale = getPathnameWithoutLocale(pathname);
       router.replace(`/${savedLocale}${pathWithoutLocale}`);
-    } else if (savedLocale) {
-      setCurrentLocale(savedLocale);
     }
-  }, [locale, pathname, router]);
+  }, [currentLocale, pathname, router]);
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = e.target.value;
-    setCurrentLocale(newLocale);
-    
+  // Efecto para cerrar el dropdown al hacer clic afuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Obtener los datos del idioma actual
+  const currentLang = localesInfo.find(l => l.code === currentLocale) || localesInfo[0];
+
+  // Función para cambiar de idioma
+  const handleLocaleChange = (newLocale: string) => {
     localStorage.setItem('goh2-locale', newLocale);
-    
-    // Obtener el path sin el locale actual
-    const pathWithoutLocale = getPathnameWithoutLocale(pathname, locale);
-    
-    // Navegar al nuevo locale
+    const pathWithoutLocale = getPathnameWithoutLocale(pathname);
     router.replace(`/${newLocale}${pathWithoutLocale}`);
+    setIsOpen(false);
   };
 
   return (
-    <div className="relative flex items-center">
-      <GlobeIcon />
-      <select
-        value={currentLocale}
-        onChange={handleChange}
-        className="bg-transparent text-white appearance-none cursor-pointer pr-6 focus:outline-none text-sm"
+    <div className="relative" ref={dropdownRef}>
+      
+      {/* Botón de Toggle */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-between text-sm text-gray-light font-medium py-2 px-3 rounded-lg hover:bg-gray-medium/50 transition-colors"
         aria-label={t('label')}
       >
-        <option key="es" value="es" className="bg-black text-white">
-          {t('es')}
-        </option>
-        <option key="en" value="en" className="bg-black text-white">
-          {t('en')}
-        </option>
-        <option key="fr" value="fr" className="bg-black text-white">
-          {t('fr')}
-        </option>
-      </select>
-      <div className="absolute inset-y-0 right-0 flex items-center px-1 pointer-events-none">
-        <svg className="w-4 h-4 fill-current text-gray-light" viewBox="0 0 20 20"><path d="M5.516 7.548c.436-.446 1.043-.481 1.576 0L10 10.405l2.908-2.857c.533-.481 1.141-.446 1.574 0 .436.445.408 1.197 0 1.642l-3.417 3.356c-.27.267-.62.401-.971.401s-.701-.134-.971-.401L5.516 9.19c-.408-.445-.436-1.197 0-1.642z"></path></svg>
-      </div>
+        <GlobeIcon />
+        <span className="mx-2">{currentLang.emoji} {t(currentLang.nameKey)}</span>
+        <ChevronDownIcon />
+      </button>
+
+      {/* Dropdown (estilo Duolingo) */}
+      {isOpen && (
+        <div 
+          className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-lg overflow-hidden z-20 p-2"
+          style={{
+            boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(0, 0, 0, 0.1)'
+          }}
+        >
+          <div className="p-2">
+            <span className="block px-3 py-1 text-xs font-semibold text-gray-medium uppercase">
+              {t('label')}
+            </span>
+          </div>
+          
+          <ul className="grid grid-cols-2 gap-1">
+            {localesInfo.map((locale) => (
+              <li key={locale.code}>
+                <button
+                  onClick={() => handleLocaleChange(locale.code)}
+                  className={`w-full flex items-center p-3 rounded-xl text-black transition-colors text-sm font-medium
+                    ${currentLocale === locale.code 
+                      ? 'bg-primary/20 text-primary-dark font-bold' 
+                      : 'hover:bg-primary/10'
+                    }
+                  `}
+                >
+                  <span className="mr-3 text-xl">{locale.emoji}</span>
+                  <span>{t(locale.nameKey)}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

@@ -24,10 +24,11 @@ export default function LandingPage({
         {/* === Columna Izquierda (Logo) === */}
         <div className="flex-1 flex items-center justify-center w-full md:w-1/2 p-10">
           <Image
-            src="/goh2-logo.webp"
+            src="/oso_respirando.gif"
             alt="Ilustración de GoH2"
             width={500}
             height={500}
+            unoptimized
             priority
             className="max-w-sm md:max-w-md lg:max-w-lg"
           />
