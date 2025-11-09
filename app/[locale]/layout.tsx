@@ -1,8 +1,10 @@
 // app/[locale]/layout.tsx
-import { NextIntlClientProvider } from 'next-intl';
+import { NextIntlClientProvider } from "next-intl";
 import { Inter } from "next/font/google";
-import { locales } from '@/i18n';
+import { locales } from "@/i18n";
 import "../globals.css";
+import { setRequestLocale } from "next-intl/server";
+import { ReactNode } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,18 +14,22 @@ export function generateStaticParams() {
 
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params: { locale }
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   params: { locale: string };
 }) {
+  setRequestLocale(locale);
+
   const messages = (await import(`../../messages/${locale}.json`)).default;
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <div className={`${inter.className} bg-black text-white min-h-screen`}>
-        {children}
-      </div>
-    </NextIntlClientProvider>
+    <html lang={locale}>
+      <body className={`${inter.className} bg-black text-white min-h-screen`}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

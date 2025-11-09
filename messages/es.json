@@ -1,4 +1,8 @@
 {
+  "SEO": {
+    "title": "GoH2 - Tu App de Hidratación",
+    "description": "Monitoriza tu hidratación diaria y alcanza tus objetivos."
+  },
   "Landing": {
     "brand": "GoH3",
     "slogan": "La forma inteligente y social de <primary>monitorear tu hidratación</primary>.",
@@ -13,5 +17,23 @@
     "es": "Español",
     "en": "Inglés",
     "fr": "Francés"
+  },
+  "Auth": {
+    "loginTitle": "Iniciar Sesión",
+    "loginButton": "INGRESAR",
+    "register": "Continuar",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirma tu contraseña",
+    "name": "Nombre",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "loginPrompt": "Ya tengo una cuenta",
+    "registerPrompt": "¿No tienes cuenta? Regístrate",
+    "safeInfo": "Tu información está segura con nosotros.",
+    "loginError": "Credenciales inválidas. Por favor, intenta de nuevo.",
+    "registerError": "Este correo ya ha sido registrado.",
+    "registerSuccess": "Te registraste correctamente. ¡Bienvenido!",
+    "unknownError": "Ocurrió un error inesperado.",
+    "passwordMismatch": "Las contraseñas no coinciden."
   }
 }

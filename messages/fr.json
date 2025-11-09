@@ -1,4 +1,8 @@
 {
+  "SEO": {
+    "title": "GoH2 - Votre application d'hydratation",
+    "description": "Suivez votre hydratation quotidienne et atteignez vos objectifs."
+  },
   "Landing": {
     "brand": "GoH2",
     "slogan": "Le moyen intelligent et social de <primary>suivre votre hydratation</primary>.",
@@ -13,5 +17,23 @@
     "es": "Espagnol",
     "en": "Anglais",
     "fr": "Français"
+  },
+  "Auth": {
+    "loginTitle": "Se connecter",
+    "loginButton": "SE CONNECTER",
+    "register": "Continuer",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmez votre mot de passe",
+    "name": "Nom",
+    "forgotPassword": "Mot de passe oublié?",
+    "loginPrompt": "J'ai déjà un compte",
+    "registerPrompt": "Pas de compte? S'inscrire",
+    "safeInfo": "Vos informations sont en sécurité avec nous.",
+    "loginError": "Identifiants invalides. Veuillez réessayer.",
+    "registerError": "Cet e-mail est déjà enregistré.",
+    "registerSuccess": "Vous vous êtes inscrit avec succès. Bienvenue!",
+    "unknownError": "Une erreur inattendue est survenue.",
+    "passwordMismatch": "Les mots de passe ne correspondent pas."
   }
 }

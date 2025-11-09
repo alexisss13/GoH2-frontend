@@ -1,19 +1,16 @@
+'use client';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { useRouter } from 'next/navigation';
 import Oso from '@/components/layout/Oso';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { Button } from '@/components/ui/Button';
 
-export default function LandingPage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default function LandingPage() {
   // Usa setRequestLocale en lugar de unstable_setRequestLocale
-  setRequestLocale(locale);
   const t = useTranslations('Landing');
+  const router = useRouter();
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
@@ -40,19 +37,20 @@ export default function LandingPage({
           </h1>
           
           <div className="w-full max-w-xs space-y-4">
-            <Link 
-              href="/registro" 
-              className="block w-full text-center bg-primary text-white font-bold py-4 px-6 rounded-2xl text-lg transition-all transform hover:scale-105 hover:bg-primary-light active:scale-100"
-            >
-              {t('ctaPrimary')}
-            </Link>
+            <Button 
+              type="button"
+              variant="primary"
+              onClick={() => router.push('/registro')}
+            >{t('ctaPrimary')}
+             </Button>
             
-            <Link 
-              href="/login"
-              className="block w-full text-center bg-gray-medium text-white font-bold py-4 px-6 rounded-2xl text-lg transition-all transform hover:scale-105 hover:bg-opacity-80 active:scale-100"
+            <Button 
+              type="button"
+              variant="secondary" // <-- Ahora usará 'bg-gray-medium'
+              onClick={() => router.push('/login')}
             >
-              {t('ctaSecondary')}
-            </Link>
+             {t('ctaSecondary')}
+             </Button>
           </div>
         </div>
       </div>

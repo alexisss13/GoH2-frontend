@@ -1,18 +1,15 @@
 // app/layout.tsx
 import "./globals.css";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "GoH2 - Tu App de Hidratación",
-  description: "Monitoriza tu hidratación diaria y alcanza tus objetivos.",
+export const metadata: Metadata = {
+  title: "GoH2",
+  description: "Hydration tracker app.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html>
       <body>{children}</body>
     </html>
   );

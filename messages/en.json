@@ -1,4 +1,8 @@
 {
+  "SEO": {
+    "title": "GoH2 - Your Hydration App",
+    "description": "Track your daily hydration and reach your goals."
+  },
   "Landing": {
     "brand": "GoH2",
     "slogan": "The smart and social way to <primary>monitor your hydration</primary>.",
@@ -13,5 +17,23 @@
     "es": "Spanish",
     "en": "English",
     "fr": "French"
+  },
+  "Auth": {
+    "loginTitle": "Log In",
+    "loginButton": "LOG IN",
+    "register": "Continue",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm your password",
+    "name": "Name",
+    "forgotPassword": "Forgot your password?",
+    "loginPrompt": "I already have an account",
+    "registerPrompt": "Don't have an account? Sign up",
+    "safeInfo": "Your information is safe with us.",
+    "loginError": "Invalid credentials. Please try again.",
+    "registerError": "This email has already been registered.",
+    "registerSuccess": "You registered successfully. Welcome!",
+    "unknownError": "An unexpected error occurred.",
+    "passwordMismatch": "Passwords do not match."
   }
 }
