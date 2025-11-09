@@ -8,7 +8,6 @@ import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
 
 export default function LandingPage() {
-  // Usa setRequestLocale en lugar de unstable_setRequestLocale
   const t = useTranslations('Landing');
   const router = useRouter();
 

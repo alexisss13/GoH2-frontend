@@ -21,7 +21,8 @@
   "Auth": {
     "loginTitle": "Se connecter",
     "loginButton": "SE CONNECTER",
-    "register": "Continuer",
+    "registerTitle": "Créer un compte",
+    "registerButton": "CONTINUER",
     "email": "Email",
     "password": "Mot de passe",
     "confirmPassword": "Confirmez votre mot de passe",
@@ -34,6 +35,10 @@
     "registerError": "Cet e-mail est déjà enregistré.",
     "registerSuccess": "Vous vous êtes inscrit avec succès. Bienvenue!",
     "unknownError": "Une erreur inattendue est survenue.",
-    "passwordMismatch": "Les mots de passe ne correspondent pas."
+    "passwordMismatch": "Les mots de passe ne correspondent pas.",
+    "errors": {
+      "emailInvalid": "Veuillez entrer un email valide.",
+      "passwordRequired": "Le mot de passe est requis."
+    }
   }
 }

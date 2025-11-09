@@ -23,32 +23,37 @@ const EyeIcon = ({ slashed }: { slashed?: boolean }) => (
 );
 
 
-export const PasswordInput = React.forwardRef<
-  HTMLInputElement,
-  React.InputHTMLAttributes<HTMLInputElement>
->(({ ...props }, ref) => {
-  const [show, setShow] = useState(false);
-  const toggleShow = () => setShow(!show);
+// Añadimos 'isInvalid' a las props
+interface PasswordInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  isInvalid?: boolean;
+}
 
-  return (
-    <div className="relative w-full">
-      <Input
-        {...props}
-        ref={ref}
-        type={show ? 'text' : 'password'}
-        icon={<LockIcon />}
-        className="pr-12" // Añadimos padding derecho para el botón
-      />
-      <button
-        type="button"
-        onClick={toggleShow}
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-light hover:text-white"
-        aria-label={show ? "Ocultar contraseña" : "Mostrar contraseña"}
-      >
-        {show ? <EyeIcon slashed /> : <EyeIcon />}
-      </button>
-    </div>
-  );
-});
+export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
+  ({ isInvalid = false, ...props }, ref) => {
+    const [show, setShow] = useState(false);
+    const toggleShow = () => setShow(!show);
+
+    return (
+      <div className="relative w-full">
+        <Input
+          {...props}
+          ref={ref}
+          type={show ? 'text' : 'password'}
+          icon={<LockIcon />}
+          isInvalid={isInvalid} // <-- Pasamos la prop de error
+          className="pr-12" // Padding para el botón de "ojo"
+        />
+        <button
+          type="button"
+          onClick={toggleShow}
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-light hover:text-white"
+          aria-label={show ? "Ocultar contraseña" : "Mostrar contraseña"}
+        >
+          {show ? <EyeIcon slashed /> : <EyeIcon />}
+        </button>
+      </div>
+    );
+  }
+);
 
 PasswordInput.displayName = 'PasswordInput';

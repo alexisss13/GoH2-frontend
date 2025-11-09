@@ -19,11 +19,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ...props 
   }, ref) => {
     
-    const baseStyle = "block w-full text-center font-bold py-4 px-6 rounded-2xl text-lg transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed";
+    const baseStyle = "block w-full text-center font-extrabold py-4 px-6 rounded-2xl text-lg transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed uppercase";
 
     const variantStyles = variant === 'primary' 
-      ? 'bg-primary text-white hover:scale-105 hover:bg-primary-light'
-      : 'bg-gray-medium text-white hover:scale-105 hover:bg-opacity-80 active:scale-100';
+      ? 'bg-primary text-black hover:scale-105 hover:bg-primary-light shadow-[inset_0_-4px_0_rgba(0,0,0,0.18)]'
+      : ' text-primary hover:scale-105 hover:bg-opacity-80 active:scale-100 border border-gray-medium';
 
     return (
       <button

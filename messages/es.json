@@ -21,7 +21,8 @@
   "Auth": {
     "loginTitle": "Iniciar Sesión",
     "loginButton": "INGRESAR",
-    "register": "Continuar",
+    "registerTitle": "Crear Cuenta",
+    "registerButton": "CONTINUAR",
     "email": "Correo electrónico",
     "password": "Contraseña",
     "confirmPassword": "Confirma tu contraseña",
@@ -34,6 +35,10 @@
     "registerError": "Este correo ya ha sido registrado.",
     "registerSuccess": "Te registraste correctamente. ¡Bienvenido!",
     "unknownError": "Ocurrió un error inesperado.",
-    "passwordMismatch": "Las contraseñas no coinciden."
+    "passwordMismatch": "Las contraseñas no coinciden.",
+    "errors": {
+      "emailInvalid": "Por favor, ingresa un email válido.",
+      "passwordRequired": "La contraseña es requerida."}
+    
   }
 }

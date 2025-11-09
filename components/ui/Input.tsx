@@ -2,14 +2,17 @@ import React from 'react';
 
 // Extendemos las props nativas del input
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  icon?: React.ReactNode; // Para el icono de email/nombre
+  icon?: React.ReactNode;
+  isInvalid?: boolean; // <-- ¡NUEVO! Prop para el error
 }
 
-/**
- * Componente de Input reutilizable y estilizado.
- */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ icon, ...props }, ref) => {
+  ({ icon, isInvalid = false, className, ...props }, ref) => {
+    
+    // Clases condicionales para el borde
+    const errorClasses = 'border-red-500 focus:ring-red-500';
+    const defaultClasses = 'border-gray-medium focus:ring-primary';
+
     return (
       <div className="relative w-full">
         {icon && (
@@ -20,10 +23,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           {...props}
           ref={ref}
-          className={`w-full bg-gray-medium/20 text-white border border-gray-medium
+          className={`w-full bg-gray-medium/20 text-white border
             rounded-xl py-4 pr-4 text-base placeholder-gray-light
-            focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+            focus:outline-none focus:ring-2 focus:border-transparent
             ${icon ? 'pl-12' : 'pl-4'}
+            ${isInvalid ? errorClasses : defaultClasses} 
+            ${className || ''}
           `}
         />
       </div>

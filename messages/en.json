@@ -21,7 +21,8 @@
   "Auth": {
     "loginTitle": "Log In",
     "loginButton": "LOG IN",
-    "register": "Continue",
+    "registerTitle": "Create Account",
+    "registerButton": "CONTINUE",
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm your password",
@@ -34,6 +35,10 @@
     "registerError": "This email has already been registered.",
     "registerSuccess": "You registered successfully. Welcome!",
     "unknownError": "An unexpected error occurred.",
-    "passwordMismatch": "Passwords do not match."
+    "passwordMismatch": "Passwords do not match.",
+    "errors": {
+      "emailInvalid": "Please enter a valid email.",
+      "passwordRequired": "Password is required."
+    }
   }
 }
