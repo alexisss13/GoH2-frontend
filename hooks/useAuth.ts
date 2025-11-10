@@ -56,15 +56,29 @@ export const useAuth = () => {
 
   const handleForgotPassword = async (data: ForgotPasswordData) => {
     setIsLoading(true);
-    setError(null);
+    // Reiniciamos el error del formulario, pero mantenemos el error global de API
+    setError(null); 
+    
     try {
       await authService.forgotPassword(data);
-      router.push(`/restablecer-password-enviado?email=${data.email}`);
+      
+      // === ARREGLO CRÍTICO ===
+      // 1. Obtenemos el prefijo de idioma actual (ej: '', '/en', '/fr')
+      const currentLocale = document.documentElement.lang;
+      const localePrefix = currentLocale === 'es' ? '' : `/${currentLocale}`;
+      
+      // 2. Construimos la URL completa y forzamos la navegación
+      const encodedEmail = encodeURIComponent(data.email);
+      const url = `${localePrefix}/restablecer-password-enviado?email=${encodedEmail}`;
+      
+      // Usamos la navegación nativa para garantizar que la URL se lea bien.
+      window.location.href = url;
+      // Note: No usamos setIsLoading(false) porque la página se recarga.
+      
     } catch (err: any) {
       setError(t('unknownError'));
       console.error(err);
-    } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Si hay un error de API, mostramos el error y terminamos
     }
   };
 

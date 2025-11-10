@@ -33,7 +33,7 @@
     "forgotPasswordButton": "CONTINUAR",
     
     "checkEmailTitle": "Revisa tu correo",
-    "checkEmailDescription1": "Te enviamos un correo a {email}.",
+    "checkEmailDescription1": "Te enviamos un correo a <strong>{email}</strong>.",
     "checkEmailDescription2": "¿No lo recibiste? Revisa tu carpeta de correo no deseado.",
     "checkEmailSpamTip": "(A veces puede tardar unos minutos o terminar en Spam).",
     "checkEmailButton": "OK",

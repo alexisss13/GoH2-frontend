@@ -27,7 +27,8 @@ function ConfirmationContent() {
   
   // 2. ARREGLO: Leemos el email de la URL
   // Si no hay email, mostramos '...' o redirigimos (por seguridad, lo mostramos)
-  const email = decodeURIComponent(searchParams.get('email') || '...');
+  const emailFromUrl = decodeURIComponent(searchParams.get('email') || '...');
+
 
   const handleOk = () => {
     router.push('/login');
@@ -51,11 +52,12 @@ return (
             </h1>
             
             <p className="text-gray-light text-lg mb-2">
-              {/* Mostramos el email en negritas */}
-              {t.rich('checkEmailDescription1', {
-                email: () => <b className="text-white">{email}</b>
-              })}
+            {t.rich("checkEmailDescription1", {
+                strong: (chunks) => <b className="text-white font-bold">{chunks}</b>, 
+                email: emailFromUrl // variable
+            })}
             </p>
+
             <p className="text-gray-light text-lg mb-6">
               {t('checkEmailDescription2')}
             </p>
