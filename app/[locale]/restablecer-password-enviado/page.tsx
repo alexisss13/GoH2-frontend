@@ -12,6 +12,13 @@ import Footer from '@/components/layout/Footer';
 import Oso from '@/components/layout/OsoInicioSesion'; 
 import { Button } from '@/components/ui/Button';
 
+// Icono de Alerta para errores
+const ErrorIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-1">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+  </svg>
+);
+
 // 1. Creamos el componente que lee la URL
 function ConfirmationContent() {
   const t = useTranslations('Auth');
@@ -19,13 +26,14 @@ function ConfirmationContent() {
   const searchParams = useSearchParams();
   
   // 2. ARREGLO: Leemos el email de la URL
-  const email = searchParams.get('email') || '...';
+  // Si no hay email, mostramos '...' o redirigimos (por seguridad, lo mostramos)
+  const email = decodeURIComponent(searchParams.get('email') || '...');
 
   const handleOk = () => {
     router.push('/login');
   };
 
-  return (
+return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
       <Header />
 
@@ -42,8 +50,8 @@ function ConfirmationContent() {
               {t('checkEmailTitle')}
             </h1>
             
-            {/* 3. Ahora el email SÍ aparecerá */}
-            <p className="text-gray-light text-lg mb-2 break-words">
+            <p className="text-gray-light text-lg mb-2">
+              {/* Mostramos el email en negritas */}
               {t.rich('checkEmailDescription1', {
                 email: () => <b className="text-white">{email}</b>
               })}
@@ -51,6 +59,7 @@ function ConfirmationContent() {
             <p className="text-gray-light text-lg mb-6">
               {t('checkEmailDescription2')}
             </p>
+            {/* Tip de Spam */}
             <p className="text-sm text-gray-light/70 italic mb-8">
               {t('checkEmailSpamTip')}
             </p>
@@ -71,10 +80,11 @@ function ConfirmationContent() {
   );
 }
 
-// 4. Exportamos la página envuelta en Suspense
+// Envolvemos la página en Suspense
 export default function ForgotPasswordSentPage() {
   return (
-    <Suspense fallback={<div>Cargando...</div>}>
+    // Esto asegura que la página espere a que los parámetros de búsqueda estén disponibles
+    <Suspense>
       <ConfirmationContent />
     </Suspense>
   );

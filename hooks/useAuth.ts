@@ -59,9 +59,7 @@ export const useAuth = () => {
     setError(null);
     try {
       await authService.forgotPassword(data);
-      const encodedEmail = encodeURIComponent(data.email);
-      // Redirigimos a la página de confirmación
-      router.push(`/restablecer-password-enviado?email=${encodedEmail}`);
+      router.push(`/restablecer-password-enviado?email=${data.email}`);
     } catch (err: any) {
       setError(t('unknownError'));
       console.error(err);
