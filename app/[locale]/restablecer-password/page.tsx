@@ -2,14 +2,16 @@
 
 import { useForm } from 'react-hook-form';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link'; // <-- Tu import
+import Link from 'next/link';
+import { useSearchParams, useRouter } from 'next/navigation'; 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useEffect, Suspense } from 'react';
 
 // Layout
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Oso from '@/components/layout/OsoInicioSesion'; // Reutilizamos el Oso de Login
+import Oso from '@/components/layout/OsoInicioSesion'; 
 
 // UI
 import { Input } from '@/components/ui/Input';
@@ -24,7 +26,7 @@ const forgotPasswordSchema = z.object({
 });
 type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
 
-// Iconos
+// Iconos y FormError (los mismos que definiste)
 const EmailIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -46,9 +48,35 @@ const FormError = ({ message }: { message?: string }) => {
   );
 };
 
-export default function ForgotPasswordPage() {
+
+// Componente que contiene la lógica de redirección y el formulario
+function RestablecerPasswordContent() {
   const t = useTranslations('Auth');
   const { handleForgotPassword, isLoading, error } = useAuth();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  
+  // 1. CHEQUEAMOS EL TOKEN DE LA URL
+  const token = searchParams.get('token');
+  
+  useEffect(() => {
+    if (token) {
+      // SI HAY TOKEN, REDIRIGIMOS AL FORMULARIO DE NUEVA CONTRASEÑA
+      router.replace(`/restablecer-password/new-password?token=${token}`);
+    }
+  }, [token, router]);
+
+
+  // 2. Si hay token, mostramos una pantalla de carga (mientras redirigimos)
+  if (token) {
+    return (
+      <div className="flex flex-col min-h-screen items-center justify-center bg-black text-white p-8">
+        <div className="text-xl font-bold text-primary">Verificando enlace...</div>
+      </div>
+    );
+  }
+
+  // 3. Si NO hay token, mostramos el formulario de envío de email (Pág. 15)
 
   const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormData>({
     resolver: zodResolver(forgotPasswordSchema),
@@ -62,15 +90,13 @@ export default function ForgotPasswordPage() {
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
       <Header />
 
-      {/* Contenido Centrado */}
+      {/* Contenido Centrado - Formulario de Email */}
       <div className="flex flex-col min-h-screen items-center justify-center px-8 pt-24 pb-24">
         
-        {/* Oso (Más pequeño que en login) */}
         <div className="w-48 h-48 mb-8">
           <Oso /> 
         </div>
 
-        {/* Contenedor del Formulario */}
         <div className="w-full max-w-md text-center">
             
             <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">
@@ -108,6 +134,16 @@ export default function ForgotPasswordPage() {
               >
                 {t('forgotPasswordButton')}
               </Button>
+              
+              {/* Enlace para volver al Login */}
+              <div className="text-center pt-4">
+                <Link 
+                  href="/login" 
+                  className="text-gray-light hover:text-white transition-colors"
+                >
+                  Volver a Iniciar Sesión
+                </Link>
+              </div>
 
             </form>
         </div>
@@ -115,5 +151,14 @@ export default function ForgotPasswordPage() {
       
       <Footer />
     </div>
+  );
+}
+
+// Envolvemos la página principal en Suspense
+export default function RestablecerPasswordPage() {
+  return (
+    <Suspense>
+      <RestablecerPasswordContent />
+    </Suspense>
   );
 }

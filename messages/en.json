@@ -38,6 +38,12 @@
     "checkEmailSpamTip": "(Sometimes it can take a few minutes or end up in Spam).",
     "checkEmailButton": "OK",
 
+    "newPasswordTitle": "Set new password",
+    "newPasswordDescription": "Enter your new secure password. It must be at least 6 characters long.",
+    "newPasswordButton": "UPDATE PASSWORD",
+    "passwordUpdateSuccess": "Password successfully updated! You can now log in.",
+    "passwordUpdateError": "Invalid or expired token. Please request a new link.",
+
     "loginPrompt": "I already have an account",
     "registerPrompt": "Don't have an account? Sign up",
     "safeInfo": "Your information is safe with us.",
@@ -48,7 +54,9 @@
     "passwordMismatch": "Passwords do not match.",
     "errors": {
       "emailInvalid": "Please enter a valid email.",
-      "passwordRequired": "Password is required."
+      "passwordRequired": "Password is required.",
+      "passwordMinLength": "The password must be at least 6 characters long.",
+      "passwordMismatch": "The passwords do not match."      
     }
   }
 }

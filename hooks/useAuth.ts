@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Usamos el router de i18n
 import { useTranslations } from 'next-intl';
 import { useAuthStore } from '@/store/authStore';
-import { authService, LoginData, RegisterData, ForgotPasswordData } from '@/lib/authService';
+import { authService, LoginData, RegisterData, ForgotPasswordData, ResetPasswordData } from '@/lib/authService';
 
 /**
  * Hook para manejar la lógica de Login y Registro
@@ -82,12 +82,29 @@ export const useAuth = () => {
     }
   };
 
+  const handleResetPassword = async (data: ResetPasswordData) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      await authService.resetPassword(data);
+      // Redirigir a login después de un éxito (con mensaje de éxito)
+      router.push(`/login?messageKey=passwordUpdateSuccess`); 
+    } catch (err: any) {
+      // Mapeamos el error del backend (Token inválido/expirado)
+      setError(t('passwordUpdateError')); 
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     isLoading,
     error,
     handleLogin,
     handleRegister,
     handleForgotPassword,
+    handleResetPassword,
     setError,
   };
 };

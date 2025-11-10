@@ -47,25 +47,34 @@ export default function LanguageSwitcher() {
   const currentLang = localesInfo.find(l => l.code === currentLocale) || localesInfo[0];
 
   const handleLocaleChange = (newLocale: string) => {
-  // Guardar preferencia (esto está bien)
-  localStorage.setItem('goh2-locale', newLocale);
-
-  // ✅ IMPORTANTE: esto es lo que faltaba
-  document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
-
-  const currentPath = window.location.pathname;
-  const localePattern = /^\/(es|en|fr)(\/|$)/;
-  let cleanPath = currentPath.replace(localePattern, '/');
-
-  if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
-
-  const newPath = newLocale === 'es'
-    ? cleanPath
-    : `/${newLocale}${cleanPath}`;
-
-  window.location.href = newPath;
-};
-
+    // Guardar en localStorage (para cliente)
+    localStorage.setItem('goh2-locale', newLocale);
+    
+    // CRÍTICO: Guardar en cookie (para middleware)
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
+    
+    const currentPath = window.location.pathname;
+    const searchParams = window.location.search;
+    const hash = window.location.hash;
+    
+    // Remover locale del path
+    const localePattern = /^\/(es|en|fr)(\/|$)/;
+    let cleanPath = currentPath.replace(localePattern, '/');
+    
+    if (!cleanPath || cleanPath === '') {
+      cleanPath = '/';
+    }
+    
+    // Construir nueva URL
+    let newPath;
+    if (newLocale === 'es') {
+      newPath = `${cleanPath}${searchParams}${hash}`;
+    } else {
+      newPath = `/${newLocale}${cleanPath}${searchParams}${hash}`;
+    }
+    
+    window.location.href = newPath;
+  };
 
   return (
     <div className="relative" ref={dropdownRef}>

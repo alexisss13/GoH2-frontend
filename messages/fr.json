@@ -38,6 +38,12 @@
     "checkEmailSpamTip": "(Cela peut parfois prendre quelques minutes ou finir dans le dossier Spam).",
     "checkEmailButton": "OK",
 
+    "newPasswordTitle": "Définir un nouveau mot de passe",
+    "newPasswordDescription": "Entrez votre nouveau mot de passe sécurisé. Il doit comporter au moins 6 caractères.",
+    "newPasswordButton": "MISE À JOUR DU MOT DE PASSE",
+    "passwordUpdateSuccess": "Mot de passe mis à jour avec succès ! Vous pouvez désormais vous connecter.",
+    "passwordUpdateError": "Jeton invalide ou expiré. Veuillez demander un nouveau lien.",
+
     "loginPrompt": "J'ai déjà un compte",
     "registerPrompt": "Pas de compte? S'inscrire",
     "safeInfo": "Vos informations sont en sécurité avec nous.",
@@ -48,7 +54,9 @@
     "passwordMismatch": "Les mots de passe ne correspondent pas.",
     "errors": {
       "emailInvalid": "Veuillez entrer un email valide.",
-      "passwordRequired": "Le mot de passe est requis."
+      "passwordRequired": "Le mot de passe est requis.",
+      "passwordMinLength": "Le mot de passe doit comporter au moins 6 caractères.",
+      "passwordMismatch": "Les mots de passe ne correspondent pas."
     }
   }
 }

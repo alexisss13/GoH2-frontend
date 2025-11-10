@@ -29,6 +29,15 @@ export interface ForgotPasswordResponse {
   message: string;
 }
 
+// Para POST /api/auth/restablecer-password
+export interface ResetPasswordData {
+  token: string;
+  password: string;
+}
+export interface ResetPasswordResponse {
+  message: string;
+}
+
 // URL base de la API desde variables de entorno
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
 
@@ -87,6 +96,23 @@ export const authService = {
     // El backend siempre devuelve 200 OK en este endpoint por seguridad
     if (!res.ok) { 
       throw new Error(resData.error || 'Error al solicitar el restablecimiento');
+    }
+    return resData;
+  },
+
+  resetPassword: async (data: ResetPasswordData): Promise<ResetPasswordResponse> => {
+    const res = await fetch(`${API_URL}/auth/restablecer-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const resData = await res.json();
+    if (!res.ok) {
+      // El backend devuelve 400 por token expirado/inválido
+      throw new Error(resData.error || 'Error al restablecer contraseña');
     }
     return resData;
   },
