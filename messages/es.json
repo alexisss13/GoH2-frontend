@@ -27,7 +27,18 @@
     "password": "Contraseña",
     "confirmPassword": "Confirma tu contraseña",
     "name": "Nombre",
-    "forgotPassword": "¿Olvidaste tu contraseña?",
+    
+    "forgotPasswordTitle": "¿Olvidaste tu contraseña?",
+    "forgotPasswordDescription": "Ingresa tu correo electrónico para recibir un enlace de restablecimiento de contraseña.",
+    "forgotPasswordButton": "CONTINUAR",
+    
+    "checkEmailTitle": "Revisa tu correo",
+    "checkEmailDescription1": "Te enviamos un correo a {email}.",
+    "checkEmailDescription2": "¿No lo recibiste? Revisa tu carpeta de correo no deseado.",
+    "checkEmailSpamTip": "(A veces puede tardar unos minutos o terminar en Spam).",
+    "checkEmailButton": "OK",
+
+
     "loginPrompt": "Ya tengo una cuenta",
     "registerPrompt": "¿No tienes cuenta? Regístrate",
     "safeInfo": "Tu información está segura con nosotros.",

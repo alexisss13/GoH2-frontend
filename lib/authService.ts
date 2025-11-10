@@ -21,6 +21,14 @@ export interface LoginResponse {
   token: string;
 }
 
+// Para POST /api/auth/olvide-password
+export interface ForgotPasswordData {
+  email: string;
+}
+export interface ForgotPasswordResponse {
+  message: string;
+}
+
 // URL base de la API desde variables de entorno
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
 
@@ -60,6 +68,25 @@ export const authService = {
     if (!res.ok) {
       // resData.error viene del backend (ej: "Lo sentimos, este correo...")
       throw new Error(resData.error || 'Error al registrar usuario');
+    }
+    return resData;
+  },
+
+// ¡NUEVA FUNCIÓN!
+  forgotPassword: async (data: ForgotPasswordData): Promise<ForgotPasswordResponse> => {
+    const res = await fetch(`${API_URL}/auth/olvide-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const resData = await res.json();
+    
+    // El backend siempre devuelve 200 OK en este endpoint por seguridad
+    if (!res.ok) { 
+      throw new Error(resData.error || 'Error al solicitar el restablecimiento');
     }
     return resData;
   },

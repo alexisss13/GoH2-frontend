@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Usamos el router de i18n
 import { useTranslations } from 'next-intl';
 import { useAuthStore } from '@/store/authStore';
-import { authService, LoginData, RegisterData } from '@/lib/authService';
+import { authService, LoginData, RegisterData, ForgotPasswordData } from '@/lib/authService';
 
 /**
  * Hook para manejar la lógica de Login y Registro
@@ -54,11 +54,28 @@ export const useAuth = () => {
     }
   };
 
+  const handleForgotPassword = async (data: ForgotPasswordData) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      await authService.forgotPassword(data);
+      const encodedEmail = encodeURIComponent(data.email);
+      // Redirigimos a la página de confirmación
+      router.push(`/restablecer-password-enviado?email=${encodedEmail}`);
+    } catch (err: any) {
+      setError(t('unknownError'));
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return {
     isLoading,
     error,
     handleLogin,
     handleRegister,
-    setError, // Para validaciones del lado del cliente (ej. mismatch password)
+    handleForgotPassword,
+    setError,
   };
 };

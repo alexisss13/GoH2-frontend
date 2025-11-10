@@ -27,7 +27,17 @@
     "password": "Password",
     "confirmPassword": "Confirm your password",
     "name": "Name",
-    "forgotPassword": "Forgot your password?",
+
+    "forgotPasswordTitle": "Forgot your password?",
+    "forgotPasswordDescription": "Enter your email address to receive a password reset link.",
+    "forgotPasswordButton": "CONTINUE",
+    
+    "checkEmailTitle": "Check your email",
+    "checkEmailDescription1": "We sent you an email to {email}.",
+    "checkEmailDescription2": "Didn't receive it? Check your spam folder.",
+    "checkEmailSpamTip": "(Sometimes it can take a few minutes or end up in Spam).",
+    "checkEmailButton": "OK",
+
     "loginPrompt": "I already have an account",
     "registerPrompt": "Don't have an account? Sign up",
     "safeInfo": "Your information is safe with us.",

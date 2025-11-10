@@ -120,7 +120,7 @@ return (
                     href="/restablecer-password" 
                     className="text-sm text-gray-light hover:text-white transition-colors underline"
                   >
-                    {t('forgotPassword')}
+                    {t('forgotPasswordTitle')}
                   </Link>
                 </div>
               </div>
