@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'; // Usamos el router de i18n
 import { useTranslations } from 'next-intl';
 import { useAuthStore } from '@/store/authStore';
 import { authService, LoginData, RegisterData, ForgotPasswordData, ResetPasswordData } from '@/lib/authService';
+import { useOnboardingStore } from '@/store/onboardingStore'; // Importamos el store
 
 /**
  * Hook para manejar la lógica de Login y Registro
@@ -13,6 +14,7 @@ export const useAuth = () => {
   const t = useTranslations('Auth');
   const router = useRouter();
   const { setToken } = useAuthStore();
+  const resetOnboarding = useOnboardingStore(state => state.reset); // Limpiar store al inicio de un flujo
   
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -37,12 +39,20 @@ export const useAuth = () => {
     setIsLoading(true);
     setError(null);
     try {
+      // 1. Registro (POST /auth/registro)
       await authService.register(data);
-      // Redirigir a la página de "Éxito" (Pág. 13) o directo a Login
-      // Por ahora, redirigimos a Login.
-      router.push('/login');
+      
+      // 2. Login Automático (POST /auth/login)
+      const loginData: LoginData = { email: data.email, password: data.password };
+      const res = await authService.login(loginData);
+
+      // 3. Guardar Token
+      setToken(res.token);
+
+      // 4. Redirigir al inicio del Onboarding (Paso 1: Bienvenida)
+      router.push('/onboarding/paso-bienvenida'); 
+      
     } catch (err: any) {
-      // Mapeamos los errores del backend a las traducciones
       if (err.message.includes('correo ya ha sido registrado')) {
         setError(t('registerError'));
       } else {

@@ -56,7 +56,36 @@
       "emailInvalid": "Por favor, ingresa un email válido.",
       "passwordRequired": "La contraseña es requerida.",
       "passwordMinLength": "La contraseña debe tener al menos 6 caracteres.",
-      "passwordMismatch": "Las contraseñas no coinciden."}
-    
+      "passwordMismatch": "Las contraseñas no coinciden.",
+      "nameRequired": "El nombre es requerido.",
+      "positiveNumber": "Debe ser un número positivo.",
+      "invalidDate": "Fecha inválida.",
+      "invalidOption": "Opción inválida."
+    },
+    "onboarding": {
+      "welcomeText": "¡Hola! Yo soy Goh.",
+      "instructionText": "¡Llenemos juntos tu registro en la aplicación!",
+      "biometricTitle": "Datos biométricos",
+      "biometricSubtitle": "Necesitamos estos datos para calcular tu objetivo de hidratación diaria.",
+      "dob": "Fecha N.",
+      "gender": "Género",
+      "height": "Altura",
+      "weight": "Peso",
+      "activityLevel": "Nivel de actividad",
+      "cm": "cm",
+      "kg": "kg",
+      "genderOptions": {
+        "Masculino": "Masculino",
+        "Femenino": "Femenino",
+        "Otro": "Otro"
+      },
+      "activityOptions": {
+        "Sedentario": "Sedentario",
+        "Ligero": "Ligero",
+        "Moderado": "Moderado",
+        "Activo": "Activo",
+        "MuyActivo": "Muy Activo"
+      }
+    }
   }
 }

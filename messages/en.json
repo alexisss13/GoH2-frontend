@@ -56,7 +56,35 @@
       "emailInvalid": "Please enter a valid email.",
       "passwordRequired": "Password is required.",
       "passwordMinLength": "The password must be at least 6 characters long.",
-      "passwordMismatch": "The passwords do not match."      
-    }
+      "passwordMismatch": "The passwords do not match.",
+      "nameRequired": "Name is required.",
+      "positiveNumber": "Must be a positive number.",
+      "invalidDate": "Invalid date.",
+      "invalidOption": "Invalid option."      
+    },
+    "onboarding": {
+      "welcomeText": "Bonjour ! Je m'appelle Goh.",
+      "instructionText": "Remplissons ensemble ton inscription dans l'application!",
+      "biometricTitle": "Données biométriques",
+      "biometricSubtitle": "Nous avons besoin de ces données pour calculer ton objectif d'hydratation quotidien.",
+      "dob": "Date de naissance",
+      "gender": "Sexe",
+      "height": "Taille",
+      "weight": "Poids",
+      "activityLevel": "Niveau d'activité",
+      "cm": "cm",
+      "kg": "kg",
+      "genderOptions": {
+        "Masculino": "Masculin",
+        "Femenino": "Féminin",
+        "Otro": "Autre"
+      },
+      "activityOptions": {
+        "Sedentario": "Sédentaire",
+        "Ligero": "Léger",
+        "Moderado": "Modéré",
+        "Activo": "Actif",
+        "MuyActivo": "Très actif"
+      }}
   }
 }
