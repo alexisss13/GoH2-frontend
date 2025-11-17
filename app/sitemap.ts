@@ -1,38 +1,39 @@
-// app/sitemap.ts
 import { MetadataRoute } from 'next';
-import { locales } from '@/i18n'; // Importamos tus idiomas
+import { locales } from '@/i18n';
 
 const DOMAIN = 'https://goh2.vercel.app';
 
 const staticPaths = [
-    '/',
-    '/login',
-    '/registro',
-    '/restablecer-password',
-    '/onboarding/paso-bienvenida',
+  '/',
+  '/login',
+  '/registro',
+  '/restablecer-password',
+  '/onboarding/paso-bienvenida',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const allEntries: MetadataRoute.Sitemap = [];
+  const entries: MetadataRoute.Sitemap = [];
 
-  // Generar entradas para cada idioma y cada ruta estática
   locales.forEach((locale) => {
     staticPaths.forEach((path) => {
-      // Evitar prefijo doble: si el path es '/' y el locale es 'es' (default), usamos DOMAIN.
-      const urlPath = (locale === 'es' && path === '/') 
-        ? DOMAIN 
-        : (locale === 'es' && path !== '/')
-            ? `${DOMAIN}${path}`
-            : `${DOMAIN}/${locale}${path}`;
+      const isDefault = locale === 'es';
+      const isRoot = path === '/';
 
-      allEntries.push({
-        url: urlPath.replace('//', '/'), // Limpia dobles barras (ej: https://goh2.com/)
+      const url =
+        isDefault && isRoot
+          ? DOMAIN
+          : isDefault
+          ? `${DOMAIN}${path}`
+          : `${DOMAIN}/${locale}${path}`;
+
+      entries.push({
+        url,
         lastModified: new Date(),
         changeFrequency: 'weekly',
-        priority: path === '/' ? 1.0 : 0.8,
+        priority: isRoot ? 1.0 : 0.8,
       });
     });
   });
 
-  return allEntries;
+  return entries;
 }
