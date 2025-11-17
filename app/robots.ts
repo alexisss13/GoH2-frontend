@@ -1,18 +1,23 @@
 import { MetadataRoute } from 'next';
+import { locales } from '@/i18n';
 
 const DOMAIN = 'https://goh2.vercel.app';
 
 export default function robots(): MetadataRoute.Robots {
+  const disallowPaths = [
+    '/onboarding',           // Sin idioma
+    ...locales.map(locale => `/${locale}/onboarding`)
+  ];
+
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
       },
-      // Bloquear onboarding sin importar idioma ni subrutas
       {
         userAgent: '*',
-        disallow: ['/onboarding', '/onboarding/', '*/onboarding', '*/onboarding/'],
+        disallow: disallowPaths,
       }
     ],
     sitemap: `${DOMAIN}/sitemap.xml`,
