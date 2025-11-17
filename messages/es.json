@@ -20,13 +20,37 @@
   },
   "Auth": {
     "loginTitle": "Iniciar Sesión",
+    "dontHaveAccount": "¿No tienes cuenta?",
     "loginButton": "INGRESAR",
     "registerTitle": "Crear Cuenta",
+    "registerLink":"Regístrate",
     "registerButton": "CONTINUAR",
+    "registerSubtitle": "Crea tu cuenta en menos de un minuto",
+    "registerWelcome": "Comienza tu viaje hacia una vida más saludable",
+    "registerDescription": "Únete a miles de personas que ya están transformando sus hábitos de hidratación y bienestar.",
+    
+    "registerBenefit1Title": "Seguimiento personalizado",
+    "registerBenefit1Desc": "Monitorea tu hidratación diaria adaptada a tu estilo de vida",
+    "registerBenefit2Title": "Recordatorios inteligentes",
+    "registerBenefit2Desc": "Notificaciones adaptadas a tus horarios y rutina",
+    "registerBenefit3Title": "Estadísticas detalladas",
+    "registerBenefit3Desc": "Visualiza tu progreso con gráficos y reportes",
+    
     "email": "Correo electrónico",
+    "emailPlaceholder": "tu@email.com",
     "password": "Contraseña",
-    "confirmPassword": "Confirma tu contraseña",
-    "name": "Nombre",
+    "passwordPlaceholder": "Mínimo 6 caracteres",
+    "confirmPassword": "Confirmar contraseña",
+    "confirmPasswordPlaceholder": "Repite tu contraseña",
+    "name": "Nombre completo",
+    "namePlaceholder": "Ingresa tu nombre completo",
+    
+    "registerTerms1": "Al registrarte, aceptas nuestros",
+    "registerTerms2": "y",
+    "termsLink": "Términos y Condiciones",
+    "privacyLink": "Política de Privacidad",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "loginLink": "Inicia sesión",
     
     "forgotPasswordTitle": "¿Olvidaste tu contraseña?",
     "forgotPasswordDescription": "Ingresa tu correo electrónico para recibir un enlace de restablecimiento de contraseña.",
@@ -45,7 +69,6 @@
     "passwordUpdateError": "Token inválido o expirado. Por favor, solicita un nuevo enlace.",
 
     "loginPrompt": "Ya tengo una cuenta",
-    "registerPrompt": "¿No tienes cuenta? Regístrate",
     "safeInfo": "Tu información está segura con nosotros.",
     "loginError": "Credenciales inválidas. Por favor, intenta de nuevo.",
     "registerError": "Este correo ya ha sido registrado.",
@@ -65,27 +88,49 @@
     "onboarding": {
       "welcomeText": "¡Hola! Yo soy Goh.",
       "instructionText": "¡Llenemos juntos tu registro en la aplicación!",
-      "biometricTitle": "Datos biométricos",
-      "biometricSubtitle": "Necesitamos estos datos para calcular tu objetivo de hidratación diaria.",
-      "dob": "Fecha N.",
+
+      "basicDataTitle": "Cuéntanos sobre ti",
+      "basicDataPrompt": "Necesitamos algunos datos básicos para personalizar tu experiencia",
+      
+      "dob": "Fecha de nacimiento",
       "gender": "Género",
-      "height": "Altura",
-      "weight": "Peso",
-      "activityLevel": "Nivel de actividad",
-      "cm": "cm",
-      "kg": "kg",
       "genderOptions": {
         "Masculino": "Masculino",
         "Femenino": "Femenino",
         "Otro": "Otro"
       },
+
+      "biometricTitle": "Datos biométricos",
+      "biometricSubtitle": "Necesitamos estos datos para calcular tu objetivo de hidratación diaria.",
+      "height": "Altura",
+      "weight": "Peso",
+      "cm": "cm",
+      "kg": "kg",
+
+      "activityLevel": "Nivel de actividad",
       "activityOptions": {
         "Sedentario": "Sedentario",
         "Ligero": "Ligero",
         "Moderado": "Moderado",
         "Activo": "Activo",
         "MuyActivo": "Muy Activo"
-      }
-    }
+      },
+
+      "measurementsTitle": "Tus medidas",
+      "measurementsPrompt": "Estas medidas nos ayudarán a calcular tus necesidades de hidratación",
+
+      "activityTitle": "Nivel de actividad",
+      "activityPrompt": "¿Qué tan activo eres durante la semana?",
+      "activityHelp": "Guía de niveles",
+
+      "finalTitle": "¡Ya casi terminamos!",
+      "finalPrompt": "Revisa tu información antes de finalizar",
+      "summaryTitle": "Resumen de tus datos",
+      "tip": "Consejo"
+    },
+
+    "continueButton": "Continuar",
+    "backButton": "Atrás",
+    "finishButton": "Finalizar"
   }
 }

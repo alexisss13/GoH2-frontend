@@ -165,13 +165,14 @@ return (
                 {t('loginButton')}
               </Button>
               
-              <div className="text-center pt-4">
-                <Link 
-                  href="/registro" 
-                  className="text-gray-light hover:text-white transition-colors"
-                >
-                  {t('registerPrompt')}
-                </Link>
+
+              
+              {/* Link a login */}
+              <div className="text-center pt-4 text-gray-light">
+                  {t('dontHaveAccount')}{' '}
+                  <Link href="/registro" className="text-primary hover:text-primary/80 font-semibold">
+                    {t('registerLink')}
+                  </Link>
               </div>
 
             </form>

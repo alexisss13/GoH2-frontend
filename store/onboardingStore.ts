@@ -12,7 +12,7 @@ interface OnboardingData {
   email: string;
   password: string;
   
-  // Datos del Paso 2 (Biometría)
+  // Datos del Paso 2 (Biometría) - Ahora dividido en 4 pasos
   fechaNacimiento: string; // Usamos string para el ISO 8601
   genero: Genero | null;
   alturaCm: number | null;
@@ -47,6 +47,7 @@ export const useOnboardingStore = create<OnboardingState>((set) => ({
     ...data,
   })),
 
+  // Este método ahora se usa en cada paso para actualizar parcialmente los datos
   setBiometricData: (data) => set((state) => ({ 
     ...state, 
     ...data,

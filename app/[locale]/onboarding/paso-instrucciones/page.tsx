@@ -13,7 +13,7 @@ export default function OnboardingInstructionsPage() {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push('/onboarding/paso-biometria'); // Siguiente paso: Biometría
+    router.push('/onboarding/paso-datos-basicos'); // Siguiente paso: Biometría
   };
 
   return (
