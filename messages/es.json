@@ -1,20 +1,20 @@
 {
   "SEO": {
-    "defaultTitle": "GoH2 – App inteligente para controlar tu hidratación diaria",
+    "defaultTitle": "GoH2 - App inteligente para controlar tu hidratación diaria",
     "defaultDescription": "GoH2 es la app que te ayuda a monitorear tu hidratación diaria, recibir recordatorios personalizados y mejorar tus hábitos de salud.",
     
     "landing": {
-      "title": "GoH2 – Controla tu hidratación de forma inteligente",
+      "title": "GoH2 - Controla tu hidratación de forma inteligente",
       "description": "Monitorea tu consumo de agua, recibe recordatorios personalizados y mejora tu bienestar con GoH2, la app moderna de hidratación."
     },
     
     "login": {
-      "title": "Iniciar sesión – GoH2",
+      "title": "Iniciar sesión - GoH2",
       "description": "Accede a tu cuenta de GoH2 para ver tu progreso de hidratación."
     },
     
     "register": {
-      "title": "Crear cuenta – GoH2",
+      "title": "Crear cuenta - GoH2",
       "description": "Regístrate en GoH2 y comienza a monitorear tu hidratación diaria con recordatorios inteligentes."
     }
   },
