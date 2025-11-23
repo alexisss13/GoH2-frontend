@@ -10,7 +10,7 @@ import { Suspense, useEffect } from 'react';
 // Layout
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Oso from '@/components/layout/OsoInicioSesion'; 
+import Oso from '@/components/layout/OsoEnergicoV2'; 
 
 // UI
 import { PasswordInput } from '@/components/ui/PasswordInput';

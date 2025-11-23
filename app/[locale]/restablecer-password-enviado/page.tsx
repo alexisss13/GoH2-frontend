@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation'; // <-- Tus imports
 // Layout
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Oso from '@/components/layout/OsoInicioSesion'; 
+import Oso from '@/components/layout/OsoSorprendido'; 
 import { Button } from '@/components/ui/Button';
 
 // Icono de Alerta para errores

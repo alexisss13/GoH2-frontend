@@ -11,7 +11,7 @@ import { useEffect, Suspense } from 'react';
 // Layout
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Oso from '@/components/layout/OsoInicioSesion'; 
+import Oso from '@/components/layout/OsoSorprendido'; 
 
 // UI
 import { Input } from '@/components/ui/Input';
