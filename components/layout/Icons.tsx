@@ -1,8 +1,7 @@
-/**
- * Iconos SVG reutilizables para la UI.
- */
 // components/layout/Icons.tsx
 import React from "react";
+
+// --- Navegación y UI General ---
 
 export const HomeIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -14,12 +13,6 @@ export const ChartBarIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path fillRule="evenodd" d="M2.25 13.5a.75.75 0 00.75.75h2.25a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-2.25a.75.75 0 00-.75.75v3zm6-6a.75.75 0 00.75.75h2.25a.75.75 0 00.75-.75v-9a.75.75 0 00-.75-.75h-2.25a.75.75 0 00-.75.75v9zm6-3a.75.75 0 00.75.75h2.25a.75.75 0 00.75-.75v-6a.75.75 0 00-.75-.75h-2.25a.75.75 0 00-.75.75v6z" clipRule="evenodd" />
     <path d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z" />
-  </svg>
-);
-
-export const DropIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path fillRule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.177 7.547 7.547 0 01-1.705-1.715.75.75 0 00-1.152-.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
   </svg>
 );
 
@@ -35,6 +28,52 @@ export const CogIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+export const CalendarIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+  </svg>
+);
+
+// --- Flechas ---
+
+export const ArrowRightIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+  </svg>
+);
+
+export const ArrowLeftIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+  </svg>
+);
+
+export const ChevronLeftIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+  </svg>
+);
+
+export const ChevronRightIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+  </svg>
+);
+
+export const ChevronDownIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className={className || "w-4 h-4 ml-1 opacity-70"}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+  </svg>
+);
+
+// --- Elementos de Hidratación y Clima ---
+
+export const DropIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path fillRule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.177 7.547 7.547 0 01-1.705-1.715.75.75 0 00-1.152-.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
+  </svg>
+);
+
 export const GlassIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path fillRule="evenodd" d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z" clipRule="evenodd" />
@@ -44,39 +83,25 @@ export const GlassIcon = ({ className }: { className?: string }) => (
 );
 
 export const CoffeeIcon = ({ className }: { className?: string }) => (
-   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-     <path fillRule="evenodd" d="M5.25 2.25a.75.75 0 01.75.75v2.25h10.5V3a.75.75 0 011.5 0v2.25H18a3 3 0 013 3V10.5a3 3 0 01-3 3h-2.115a6.003 6.003 0 01-5.885 4.5H12a6.003 6.003 0 01-5.885-4.5H3.75a3 3 0 01-3-3V8.25a3 3 0 013-3h9.75V3a.75.75 0 01.75-.75zm0 3.75h-1.5a1.5 1.5 0 00-1.5 1.5v2.25a1.5 1.5 0 001.5 1.5h1.5v-5.25zm12.75 0v5.25h1.5a1.5 1.5 0 001.5-1.5V7.5a1.5 1.5 0 00-1.5-1.5h-1.5z" clipRule="evenodd" />
-   </svg>
-);
-
-export const BoltIcon = ({ className }: { className?: string }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.914-.143z" clipRule="evenodd" />
-    </svg>
-);
-
-export const ArrowRightIcon = ({ className }: { className?: string }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-    </svg>
-);
-
-export const CloudIcon = ({ className }: { className?: string }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-        <path d="M4.5 9.75a6 6 0 0111.573-2.226 3.75 3.75 0 014.133 4.303A4.5 4.5 0 0118 20.25H6.75a4.5 4.5 0 01-2.25-8.625z" />
-    </svg>
-);
-
-// Icono del selector de idioma
-export const GlobeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C13.18 7.083 14.135 7.5 15 7.5c.865 0 1.72-.417 2.416-1.036M15 7.5V3m3.375 4.5c.891 0 1.756.24 2.548.662M18.375 7.5V3m0 3.75c.609.328 1.125.79 1.5 1.337M19.875 10.5c.375.547.675 1.138.9 1.762" />
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path fillRule="evenodd" d="M5.25 2.25a.75.75 0 01.75.75v2.25h10.5V3a.75.75 0 011.5 0v2.25H18a3 3 0 013 3V10.5a3 3 0 01-3 3h-2.115a6.003 6.003 0 01-5.885 4.5H12a6.003 6.003 0 01-5.885-4.5H3.75a3 3 0 01-3-3V8.25a3 3 0 013-3h9.75V3a.75.75 0 01.75-.75zm0 3.75h-1.5a1.5 1.5 0 00-1.5 1.5v2.25a1.5 1.5 0 001.5 1.5h1.5v-5.25zm12.75 0v5.25h1.5a1.5 1.5 0 001.5-1.5V7.5a1.5 1.5 0 00-1.5-1.5h-1.5z" clipRule="evenodd" />
   </svg>
 );
 
-// Flecha para el dropdown
-export const ChevronDownIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 ml-1 opacity-70">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+export const BoltIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path fillRule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.914-.143z" clipRule="evenodd" />
+  </svg>
+);
+
+export const CloudIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M4.5 9.75a6 6 0 0111.573-2.226 3.75 3.75 0 014.133 4.303A4.5 4.5 0 0118 20.25H6.75a4.5 4.5 0 01-2.25-8.625z" />
+  </svg>
+);
+
+export const GlobeIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className || "w-5 h-5"}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C13.18 7.083 14.135 7.5 15 7.5c.865 0 1.72-.417 2.416-1.036M15 7.5V3m3.375 4.5c.891 0 1.756.24 2.548.662M18.375 7.5V3m0 3.75c.609.328 1.125.79 1.5 1.337M19.875 10.5c.375.547.675 1.138.9 1.762" />
   </svg>
 );
