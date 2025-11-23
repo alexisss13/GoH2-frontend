@@ -23,10 +23,12 @@ export interface Registro {
   tipoRegistro: 'MANUAL' | 'DIGITAL';
 }
 
+// Actualizado: Añadimos fechaHora opcional
 export interface CreateRegistroData {
   bebidaId: string;
   cantidadConsumidaMl: number;
   tipoRegistro: 'MANUAL' | 'DIGITAL';
+  fechaHora?: string; // ISO Date string
 }
 
 export const dashboardService = {
@@ -46,8 +48,12 @@ export const dashboardService = {
     return res.json();
   },
 
-  getRegistrosHoy: async (token: string): Promise<{ totalAporteDia: number; registros: Registro[] }> => {
-    const res = await fetch(`${API_URL}/registros`, {
+  getRegistros: async (token: string, fecha?: string): Promise<{ totalAporteDia: number; registros: Registro[] }> => {
+    const url = fecha 
+      ? `${API_URL}/registros?fecha=${fecha}` 
+      : `${API_URL}/registros`;
+
+    const res = await fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (!res.ok) throw new Error('Error al obtener registros');

@@ -36,7 +36,7 @@ export default function DashboardPage() {
       try {
         const [resData, regsData, bebsData] = await Promise.all([
           dashboardService.getResumenHoy(token),
-          dashboardService.getRegistrosHoy(token),
+          dashboardService.getRegistros(token),
           dashboardService.getBebidas(token)
         ]);
         setResumen(resData);
@@ -69,7 +69,7 @@ export default function DashboardPage() {
        
        const [newRes, newRegs] = await Promise.all([
          dashboardService.getResumenHoy(token),
-         dashboardService.getRegistrosHoy(token)
+         dashboardService.getRegistros(token)
        ]);
        setResumen(newRes);
        setRegistros(newRegs.registros);
