@@ -15,11 +15,11 @@ export default function Sidebar({ onAddClick }: SidebarProps) {
   
   const isActive = (path: string) => pathname === path || pathname.startsWith(`${path}/`);
 
+  // Quitamos Configuración de la lista principal
   const navItems = [
     { label: 'Inicio', href: '/dashboard', icon: HomeIcon },
     { label: 'Resumen', href: '/resumen', icon: ChartBarIcon },
     { label: 'Social', href: '/social', icon: UserIcon },
-    { label: 'Configuración', href: '/configuracion', icon: CogIcon },
   ];
 
   return (
@@ -39,7 +39,7 @@ export default function Sidebar({ onAddClick }: SidebarProps) {
         </Link>
       </div>
 
-      {/* Navigation Links */}
+      {/* Navigation Links (Principal) */}
       <nav className="flex-1 space-y-2">
         {navItems.map((item) => {
           const active = isActive(item.href);
@@ -60,8 +60,10 @@ export default function Sidebar({ onAddClick }: SidebarProps) {
         })}
       </nav>
 
-      {/* CTA Button - Bottom */}
-      <div className="mt-auto pt-6 border-t border-gray-800">
+      {/* CTA Button & Configuración - Bottom */}
+      <div className="mt-auto pt-6 border-t border-gray-800 flex flex-col gap-4">
+        
+        {/* Botón de Acción Principal */}
         <button
           onClick={onAddClick}
           className="w-full bg-primary hover:bg-primary-light text-white font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-3 transition-transform active:scale-95 shadow-lg shadow-primary/20"
@@ -72,15 +74,19 @@ export default function Sidebar({ onAddClick }: SidebarProps) {
           <span>Registrar Bebida</span>
         </button>
         
-        <div className="mt-6 flex items-center gap-3 px-2">
-             <div className="w-10 h-10 rounded-full bg-gray-800 border border-gray-700 overflow-hidden">
-                <Image src="/OsoFeliz.gif" width={40} height={40} alt="Avatar" />
-             </div>
-             <div className="flex flex-col">
-                 <span className="text-sm text-white font-medium">Mi Cuenta</span>
-                 <span className="text-xs text-gray-500">Ver perfil</span>
-             </div>
-        </div>
+        {/* Configuración (Reemplaza a "Mi Cuenta") */}
+        <Link
+          href="/configuracion"
+          className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-200 group ${
+            isActive('/configuracion')
+              ? 'bg-primary/10 text-primary font-bold'
+              : 'text-gray-400 hover:bg-gray-900 hover:text-white'
+          }`}
+        >
+          <CogIcon className={`w-6 h-6 ${isActive('/configuracion') ? 'text-primary' : 'text-gray-500 group-hover:text-white'}`} />
+          <span>Configuración</span>
+        </Link>
+
       </div>
     </aside>
   );
