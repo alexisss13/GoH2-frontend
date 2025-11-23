@@ -108,10 +108,10 @@ export default function RegisterContent() {
       <Header />
       
       {/* Contenido Principal (Dos Columnas) */}
-      <div className="flex flex-col md:flex-row min-h-screen items-center justify-center px-8 pt-24 pb-24 gap-8 md:gap-12 max-w-7xl mx-auto">
+      <div className="flex flex-col md:flex-row min-h-screen items-center justify-center px-6 md:px-8 pt-36 md:pt-24 pb-20 md:pb-24 gap-4 md:gap-12 max-w-7xl mx-auto">
         
         {/* Barra de progreso superior - mejorada */}
-        <div className="absolute top-20 left-0 right-0 px-8 z-10">
+        <div className="absolute top-28 md:top-20 left-0 right-0 px-6 md:px-8 z-10">
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-gray-light">
@@ -128,8 +128,8 @@ export default function RegisterContent() {
         </div>
 
         {/* === Columna Izquierda (Oso) === */}
-        <div className="flex-1 flex flex-col items-center justify-center w-full animate-scale-in">
-          <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72">
+        <div className="flex-1 flex flex-col items-center justify-center w-full animate-scale-in mb-4 md:mb-0">
+          <div className="relative w-40 h-40 md:w-56 md:h-56 lg:w-72 lg:h-72">
             <Oso />
             
             {/* Efecto de brillo detrás del oso */}
@@ -144,13 +144,13 @@ export default function RegisterContent() {
           <div className="w-full max-w-md">
             
             {/* Título del Formulario */}
-            <div className="mb-6">
-              <h1 className="text-3xl lg:text-4xl font-bold text-white mb-1 text-center md:text-left">
+            <div className="mb-3 md:mb-6">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 text-center md:text-left">
                 {t('registerTitle')}
               </h1>
             </div>
             
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-2.5 md:space-y-3.5">
               
               {/* Nombre */}
               <div className="animate-slide-in" style={{ animationDelay: '0.1s' }}>
@@ -207,13 +207,13 @@ export default function RegisterContent() {
               )}
 
               <div className="animate-fade-in-delayed">
-                <Button type="submit" variant="primary" isLoading={isLoading} className="mt-5 w-full">
+                <Button type="submit" variant="primary" isLoading={isLoading} className="mt-2 md:mt-5 w-full">
                   {t('registerButton')}
                 </Button>
               </div>
 
               {/* Link a login */}
-              <div className="text-center pt-4 text-gray-light animate-fade-in-delayed">
+              <div className="text-center pt-2 md:pt-4 text-sm md:text-base text-gray-light animate-fade-in-delayed">
                   {t('alreadyHaveAccount')}{' '}
                   <Link href="/login" className="text-primary hover:text-primary/80 font-semibold">
                     {t('loginLink')}

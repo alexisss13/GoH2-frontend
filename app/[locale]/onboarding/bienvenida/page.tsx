@@ -1,5 +1,4 @@
-// 1. app/[locale]/onboarding/paso-bienvenida/page.tsx
-// ====================================
+// app/[locale]/onboarding/paso-bienvenida/page.tsx
 'use client';
 
 import { useTranslations } from 'next-intl';
@@ -65,7 +64,8 @@ export default function OnboardingWelcomePage() {
 
       <div className="flex flex-col min-h-screen items-center justify-between px-8 pt-24 pb-24">
         
-        <div className="absolute top-20 left-0 right-0 px-8 z-10">
+        {/* Barra de progreso con más margen superior en pantallas pequeñas */}
+        <div className="absolute top-24 md:top-20 left-0 right-0 px-8 z-10">
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-gray-light">
@@ -81,8 +81,10 @@ export default function OnboardingWelcomePage() {
           </div>
         </div>
         
-        <div className="flex flex-col items-center justify-center max-w-md w-full space-y-12 flex-1">
+        {/* Contenedor principal con espaciado adaptativo */}
+        <div className="flex flex-col items-center justify-center max-w-md w-full space-y-8 md:space-y-12 flex-1 pt-16 md:pt-8">
           
+          {/* Globo de texto */}
           <div className="relative">
             <div className="bg-white text-black rounded-2xl px-6 py-4 shadow-2xl min-h-[80px] flex items-center">
               <p className="text-lg md:text-xl font-bold text-center w-full">
@@ -96,6 +98,7 @@ export default function OnboardingWelcomePage() {
             />
           </div>
           
+          {/* Imagen de mascota */}
           <div className="relative w-56 h-56 md:w-64 md:h-64">
             <Image
               src="/OsoEnergico.gif"
@@ -107,7 +110,8 @@ export default function OnboardingWelcomePage() {
             />
           </div>
           
-          <div className="w-full max-w-sm pt-8">
+          {/* Botón continuar */}
+          <div className="w-full max-w-sm pt-4 md:pt-8">
             <Button 
               type="button" 
               variant="primary" 
