@@ -31,8 +31,30 @@ const FormError = ({ message }: { message?: string }) => {
   );
 };
 
+// Función para calcular edad
+const calculateAge = (dateString: string): number => {
+  const birthDate = new Date(dateString);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  
+  return age;
+};
+
 const basicDataSchema = z.object({
-  fechaNacimiento: z.string().min(1, 'Auth.errors.invalidDate'),
+  fechaNacimiento: z.string().min(1, 'Auth.errors.invalidDate').refine(
+    (date) => {
+      const age = calculateAge(date);
+      return age >= 13; // Edad mínima 13 años
+    },
+    {
+      message: 'Auth.errors.minimumAge', // Necesitarás agregar esta key en tus traducciones
+    }
+  ),
   genero: z.enum(['Masculino', 'Femenino', 'Otro'], {
     message: 'Auth.errors.invalidOption'
   }),
@@ -49,6 +71,13 @@ export default function OnboardingBasicDataPage() {
   const targetPercentage = 50;
   const [displayedText, setDisplayedText] = useState('');
   const fullText = tOnboarding('basicDataPrompt');
+
+  // Calcular fecha máxima (13 años atrás)
+  const getMaxDate = () => {
+    const today = new Date();
+    today.setFullYear(today.getFullYear() - 13);
+    return today.toISOString().split('T')[0];
+  };
 
   useEffect(() => {
     const duration = 1000;
@@ -90,7 +119,7 @@ export default function OnboardingBasicDataPage() {
     resolver: zodResolver(basicDataSchema),
     defaultValues: {
       genero: genero || 'Masculino',
-      fechaNacimiento: fechaNacimiento || new Date().toISOString().split('T')[0],
+      fechaNacimiento: fechaNacimiento || '',
     }
   });
 
@@ -103,9 +132,10 @@ export default function OnboardingBasicDataPage() {
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
       <Header />
 
-      <div className="flex flex-col md:flex-row min-h-screen items-center justify-center px-8 pt-24 pb-24 gap-8 md:gap-12 max-w-7xl mx-auto">
+      <div className="flex flex-col lg:flex-row min-h-screen items-center justify-center px-4 sm:px-6 md:px-8 pt-48 sm:pt-52 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 gap-3 sm:gap-4 lg:gap-12 max-w-7xl mx-auto">
         
-        <div className="absolute top-20 left-0 right-0 px-8 z-10">
+        {/* Barra de progreso */}
+        <div className="absolute top-20 sm:top-24 lg:top-20 left-0 right-0 px-4 sm:px-6 md:px-8 z-10">
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-gray-light">
@@ -121,11 +151,12 @@ export default function OnboardingBasicDataPage() {
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center w-full mt-8 md:mt-0">
+        {/* Columna Izquierda - Oso y globo */}
+        <div className="flex-1 flex flex-col items-center justify-center w-full">
           
-          <div className="relative mb-8">
-            <div className="bg-white text-black rounded-2xl px-6 py-4 shadow-2xl max-w-sm min-h-[80px] flex items-center">
-              <p className="text-lg md:text-xl font-bold text-center w-full">
+          <div className="relative mb-6 sm:mb-8">
+            <div className="bg-white text-black rounded-2xl px-4 sm:px-6 py-3 sm:py-4 shadow-2xl max-w-xs sm:max-w-sm min-h-[70px] sm:min-h-[80px] flex items-center">
+              <p className="text-base sm:text-lg md:text-xl font-bold text-center w-full">
                 {displayedText}
               </p>
             </div>
@@ -136,7 +167,7 @@ export default function OnboardingBasicDataPage() {
             />
           </div>
 
-          <div className="relative w-56 h-56 md:w-64 md:h-64">
+          <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
             <Image
               src="/OsoEscribiendo.gif"
               alt="Goh - Mascota"
@@ -148,10 +179,11 @@ export default function OnboardingBasicDataPage() {
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col items-center md:items-start justify-center w-full">
+        {/* Columna Derecha - Formulario */}
+        <div className="flex-1 flex flex-col items-center lg:items-start justify-center w-full">
           <div className="w-full max-w-md">
             
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
               
               <div>
                 <label htmlFor="fechaNacimiento" className="text-gray-light mb-2 text-sm block">
@@ -160,7 +192,7 @@ export default function OnboardingBasicDataPage() {
                 <Input 
                   id="fechaNacimiento"
                   type="date"
-                  max={new Date().toISOString().split('T')[0]}
+                  max={getMaxDate()}
                   className="text-white"
                   {...register('fechaNacimiento')}
                   isInvalid={!!errors.fechaNacimiento}
@@ -174,7 +206,7 @@ export default function OnboardingBasicDataPage() {
                 </label>
                 <select 
                   id="genero"
-                  className={`w-full bg-gray-medium/20 text-white border rounded-xl py-4 px-4 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${
+                  className={`w-full bg-gray-medium/20 text-white border rounded-xl py-3 sm:py-4 px-4 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${
                     errors.genero ? 'border-red-500' : 'border-gray-medium'
                   }`}
                   {...register('genero')}
@@ -188,7 +220,7 @@ export default function OnboardingBasicDataPage() {
                 <FormError message={errors.genero?.message} />
               </div>
 
-              <div className="pt-4">
+              <div className="pt-2 sm:pt-4">
                 <Button type="submit" variant="primary" className="w-full">
                   {t('continueButton')}
                 </Button>

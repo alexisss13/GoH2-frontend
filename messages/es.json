@@ -98,7 +98,8 @@
       "nameRequired": "El nombre es requerido.",
       "positiveNumber": "Debe ser un número positivo.",
       "invalidDate": "Fecha inválida.",
-      "invalidOption": "Opción inválida."
+      "invalidOption": "Opción inválida.",
+      "minimumAge": "Debes tener al menos 13 años para usar la aplicación"
     },
     "onboarding": {
       "welcomeText": "¡Hola! Yo soy Goh.",
