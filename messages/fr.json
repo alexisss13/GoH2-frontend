@@ -1,7 +1,22 @@
 {
   "SEO": {
-    "title": "GoH2 - Votre application d'hydratation",
-    "description": "Suivez votre hydratation quotidienne et atteignez vos objectifs."
+    "defaultTitle": "GoH2 - Application intelligente pour contrôler votre hydratation quotidienne",
+    "defaultDescription": "GoH2 est l'application qui vous aide à surveiller votre hydratation quotidienne, à recevoir des rappels personnalisés et à améliorer vos habitudes de santé.",
+    
+    "landing": {
+      "title": "GoH2 - Contrôlez votre hydratation intelligemment",
+      "description": "Surveillez votre consommation d'eau, recevez des rappels personnalisés et améliorez votre bien-être avec GoH2, l'application moderne d'hydratation."
+    },
+    
+    "login": {
+      "title": "Se connecter - GoH2",
+      "description": "Accédez à votre compte GoH2 pour voir votre progression d'hydratation."
+    },
+    
+    "register": {
+      "title": "Créer un compte - GoH2",
+      "description": "Inscrivez-vous sur GoH2 et commencez à surveiller votre hydratation quotidienne avec des rappels intelligents."
+    }
   },
   "Landing": {
     "brand": "GoH2",
@@ -20,32 +35,55 @@
   },
   "Auth": {
     "loginTitle": "Se connecter",
+    "dontHaveAccount": "Vous n'avez pas de compte?",
     "loginButton": "SE CONNECTER",
     "registerTitle": "Créer un compte",
+    "registerLink": "S'inscrire",
     "registerButton": "CONTINUER",
+    "registerSubtitle": "Créez votre compte en moins d'une minute",
+    "registerWelcome": "Bienvenue sur GoH2! 💧",
+    "registerDescription": "Rejoignez des milliers de personnes qui ont déjà transformé leurs habitudes d'hydratation",
+    
+    "registerBenefit1Title": "Suivi personnalisé",
+    "registerBenefit1Desc": "Surveillez votre hydratation quotidienne adaptée à votre style de vie",
+    "registerBenefit2Title": "Rappels intelligents",
+    "registerBenefit2Desc": "Notifications adaptées à vos horaires et routine",
+    "registerBenefit3Title": "Statistiques détaillées",
+    "registerBenefit3Desc": "Visualisez votre progrès avec des graphiques et rapports",
+    
     "email": "Email",
+    "emailPlaceholder": "vous@email.com",
     "password": "Mot de passe",
-    "confirmPassword": "Confirmez votre mot de passe",
-    "name": "Nom",
-
+    "passwordPlaceholder": "Minimum 6 caractères",
+    "confirmPassword": "Confirmer le mot de passe",
+    "confirmPasswordPlaceholder": "Répétez votre mot de passe",
+    "name": "Nom complet",
+    "namePlaceholder": "Entrez votre nom complet",
+    
+    "registerTerms1": "En vous inscrivant, vous acceptez nos",
+    "registerTerms2": "et",
+    "termsLink": "Conditions Générales",
+    "privacyLink": "Politique de Confidentialité",
+    "alreadyHaveAccount": "Vous avez déjà un compte?",
+    "loginLink": "Se connecter",
+    
     "forgotPasswordTitle": "Mot de passe oublié?",
     "forgotPasswordDescription": "Entrez votre adresse e-mail pour recevoir un lien de réinitialisation du mot de passe.",
     "forgotPasswordButton": "CONTINUER",
     
     "checkEmailTitle": "Vérifiez votre messagerie",
     "checkEmailDescription1": "Nous vous avons envoyé un e-mail à <strong>{email}</strong>.",
-    "checkEmailDescription2": "Vous ne l'avez pas reçu ? Vérifiez votre dossier de courrier indésirable.",
+    "checkEmailDescription2": "Vous ne l'avez pas reçu? Vérifiez votre dossier de courrier indésirable.",
     "checkEmailSpamTip": "(Cela peut parfois prendre quelques minutes ou finir dans le dossier Spam).",
     "checkEmailButton": "OK",
 
     "newPasswordTitle": "Définir un nouveau mot de passe",
     "newPasswordDescription": "Entrez votre nouveau mot de passe sécurisé. Il doit comporter au moins 6 caractères.",
-    "newPasswordButton": "MISE À JOUR DU MOT DE PASSE",
-    "passwordUpdateSuccess": "Mot de passe mis à jour avec succès ! Vous pouvez désormais vous connecter.",
+    "newPasswordButton": "METTRE À JOUR LE MOT DE PASSE",
+    "passwordUpdateSuccess": "Mot de passe mis à jour avec succès! Vous pouvez désormais vous connecter.",
     "passwordUpdateError": "Jeton invalide ou expiré. Veuillez demander un nouveau lien.",
 
     "loginPrompt": "J'ai déjà un compte",
-    "registerPrompt": "Pas de compte? S'inscrire",
     "safeInfo": "Vos informations sont en sécurité avec nous.",
     "loginError": "Identifiants invalides. Veuillez réessayer.",
     "registerError": "Cet e-mail est déjà enregistré.",
@@ -61,6 +99,62 @@
       "positiveNumber": "Doit être un nombre positif.",
       "invalidDate": "Date non valide.",
       "invalidOption": "Option non valide."
-    }
+    },
+    "onboarding": {
+      "welcomeText": "Bonjour! Je m'appelle Goh.",
+      "instructionsText": "Remplissons ensemble ton inscription dans l'application!",
+      
+      "basicDataTitle": "Parlez-nous de vous",
+      "basicDataPrompt": "Nous avons besoin de quelques données de base pour personnaliser votre expérience",
+      
+      "dob": "Date de naissance",
+      "gender": "Sexe",
+      "genderOptions": {
+        "Masculino": "Masculin",
+        "Femenino": "Féminin",
+        "Otro": "Autre"
+      },
+      "step": "Étape {current} sur {total}",
+      "biometricTitle": "Données biométriques",
+      "biometricSubtitle": "Nous avons besoin de ces données pour calculer votre objectif d'hydratation quotidien.",
+      "height": "Taille",
+      "weight": "Poids",
+      "cm": "cm",
+      "kg": "kg",
+
+      "activityLevel": "Niveau d'activité",
+      "activityOptions": {
+        "Sedentario": "Sédentaire",
+        "Ligero": "Léger",
+        "Moderado": "Modéré",
+        "Activo": "Actif",
+        "MuyActivo": "Très actif"
+      },
+
+      "measurementsTitle": "Vos mesures",
+      "measurementsPrompt": "Ces mesures nous aideront à calculer vos besoins d'hydratation",
+
+      "activityTitle": "Niveau d'activité",
+      "activityPrompt": "Quelle est votre activité pendant la semaine?",
+      "activityHelp": "Guide des niveaux",
+      "activityHelpTitle": "Guide des niveaux",
+      "activitySedentary": "Peu ou pas d'exercice",
+      "activityLight": "Exercice 1-3 jours/semaine",
+      "activityModerate": "Exercice 3-5 jours/semaine",
+      "activityActive": "Exercice 6-7 jours/semaine",
+      "activityVeryActive": "Exercice intense quotidien",
+
+      "finalTitle": "Presque terminé!",
+      "finalPrompt": "Vérifiez vos informations avant de terminer",
+      "summaryTitle": "Résumé de vos données",
+      "summaryDescription": "Sur la base de ces données, nous personnaliserons votre expérience avec des recommandations d'hydratation et des habitudes saines adaptées à votre profil.",
+      "tip": "Conseil",
+      "successMotivation": "Vous êtes prêt à commencer votre voyage vers une meilleure hydratation! 💧",
+      "goToDashboard": "ALLER AU TABLEAU DE BORD"
+    },
+
+    "continueButton": "Continuer",
+    "backButton": "Retour",
+    "finishButton": "Terminer"
   }
 }

@@ -1,7 +1,22 @@
 {
   "SEO": {
-    "title": "GoH2 - Your Hydration App",
-    "description": "Track your daily hydration and reach your goals."
+    "defaultTitle": "GoH2 - Smart app to control your daily hydration",
+    "defaultDescription": "GoH2 is the app that helps you monitor your daily hydration, receive personalized reminders and improve your health habits.",
+    
+    "landing": {
+      "title": "GoH2 - Control your hydration intelligently",
+      "description": "Monitor your water consumption, receive personalized reminders and improve your well-being with GoH2, the modern hydration app."
+    },
+    
+    "login": {
+      "title": "Log In - GoH2",
+      "description": "Access your GoH2 account to see your hydration progress."
+    },
+    
+    "register": {
+      "title": "Create Account - GoH2",
+      "description": "Sign up for GoH2 and start monitoring your daily hydration with smart reminders."
+    }
   },
   "Landing": {
     "brand": "GoH2",
@@ -20,14 +35,38 @@
   },
   "Auth": {
     "loginTitle": "Log In",
+    "dontHaveAccount": "Don't have an account?",
     "loginButton": "LOG IN",
     "registerTitle": "Create Account",
+    "registerLink": "Sign up",
     "registerButton": "CONTINUE",
+    "registerSubtitle": "Create your account in less than a minute",
+    "registerWelcome": "Welcome to GoH2! 💧",
+    "registerDescription": "Join thousands of people who have already transformed their hydration habits",
+    
+    "registerBenefit1Title": "Personalized tracking",
+    "registerBenefit1Desc": "Monitor your daily hydration adapted to your lifestyle",
+    "registerBenefit2Title": "Smart reminders",
+    "registerBenefit2Desc": "Notifications adapted to your schedules and routine",
+    "registerBenefit3Title": "Detailed statistics",
+    "registerBenefit3Desc": "Visualize your progress with graphs and reports",
+    
     "email": "Email",
+    "emailPlaceholder": "you@email.com",
     "password": "Password",
-    "confirmPassword": "Confirm your password",
-    "name": "Name",
-
+    "passwordPlaceholder": "Minimum 6 characters",
+    "confirmPassword": "Confirm password",
+    "confirmPasswordPlaceholder": "Repeat your password",
+    "name": "Full name",
+    "namePlaceholder": "Enter your full name",
+    
+    "registerTerms1": "By signing up, you accept our",
+    "registerTerms2": "and",
+    "termsLink": "Terms and Conditions",
+    "privacyLink": "Privacy Policy",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginLink": "Log in",
+    
     "forgotPasswordTitle": "Forgot your password?",
     "forgotPasswordDescription": "Enter your email address to receive a password reset link.",
     "forgotPasswordButton": "CONTINUE",
@@ -45,7 +84,6 @@
     "passwordUpdateError": "Invalid or expired token. Please request a new link.",
 
     "loginPrompt": "I already have an account",
-    "registerPrompt": "Don't have an account? Sign up",
     "safeInfo": "Your information is safe with us.",
     "loginError": "Invalid credentials. Please try again.",
     "registerError": "This email has already been registered.",
@@ -60,31 +98,63 @@
       "nameRequired": "Name is required.",
       "positiveNumber": "Must be a positive number.",
       "invalidDate": "Invalid date.",
-      "invalidOption": "Invalid option."      
+      "invalidOption": "Invalid option."
     },
     "onboarding": {
-      "welcomeText": "Bonjour ! Je m'appelle Goh.",
-      "instructionText": "Remplissons ensemble ton inscription dans l'application!",
-      "biometricTitle": "Données biométriques",
-      "biometricSubtitle": "Nous avons besoin de ces données pour calculer ton objectif d'hydratation quotidien.",
-      "dob": "Date de naissance",
-      "gender": "Sexe",
-      "height": "Taille",
-      "weight": "Poids",
-      "activityLevel": "Niveau d'activité",
+      "welcomeText": "Hello! I'm Goh.",
+      "instructionsText": "Let's fill out your registration together!",
+      
+      "basicDataTitle": "Tell us about yourself",
+      "basicDataPrompt": "We need some basic data to personalize your experience",
+      
+      "dob": "Date of birth",
+      "gender": "Gender",
+      "genderOptions": {
+        "Masculino": "Male",
+        "Femenino": "Female",
+        "Otro": "Other"
+      },
+      "step": "Step {current} of {total}",
+      "biometricTitle": "Biometric data",
+      "biometricSubtitle": "We need this data to calculate your daily hydration goal.",
+      "height": "Height",
+      "weight": "Weight",
       "cm": "cm",
       "kg": "kg",
-      "genderOptions": {
-        "Masculino": "Masculin",
-        "Femenino": "Féminin",
-        "Otro": "Autre"
-      },
+
+      "activityLevel": "Activity level",
       "activityOptions": {
-        "Sedentario": "Sédentaire",
-        "Ligero": "Léger",
-        "Moderado": "Modéré",
-        "Activo": "Actif",
-        "MuyActivo": "Très actif"
-      }}
+        "Sedentario": "Sedentary",
+        "Ligero": "Light",
+        "Moderado": "Moderate",
+        "Activo": "Active",
+        "MuyActivo": "Very Active"
+      },
+
+      "measurementsTitle": "Your measurements",
+      "measurementsPrompt": "These measurements will help us calculate your hydration needs",
+
+      "activityTitle": "Activity level",
+      "activityPrompt": "How active are you during the week?",
+      "activityHelp": "Level guide",
+      "activityHelpTitle": "Level guide",
+      "activitySedentary": "Little or no exercise",
+      "activityLight": "Exercise 1-3 days/week",
+      "activityModerate": "Exercise 3-5 days/week",
+      "activityActive": "Exercise 6-7 days/week",
+      "activityVeryActive": "Intense daily exercise",
+
+      "finalTitle": "Almost done!",
+      "finalPrompt": "Review your information before finishing",
+      "summaryTitle": "Summary of your data",
+      "summaryDescription": "Based on this data, we will personalize your experience with hydration recommendations and healthy habits adapted to your profile.",
+      "tip": "Tip",
+      "successMotivation": "You're ready to start your journey to better hydration! 💧",
+      "goToDashboard": "GO TO DASHBOARD"
+    },
+
+    "continueButton": "Continue",
+    "backButton": "Back",
+    "finishButton": "Finish"
   }
 }

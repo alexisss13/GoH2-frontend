@@ -1,5 +1,3 @@
-// app/[locale]/registro/page.tsx
-
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -7,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link'; 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useState, useEffect } from 'react';
 
 // Layout
 import Header from '@/components/layout/Header';
@@ -68,8 +67,31 @@ const FormError = ({ message }: { message?: string }) => {
 
 export default function RegisterContent() {
   const t = useTranslations('Auth');
+  const tOnboarding = useTranslations('Auth.onboarding');
   const { handleRegister, isLoading, error } = useAuth();
-  const setAccountData = useOnboardingStore(state => state.setAccountData); 
+  const setAccountData = useOnboardingStore(state => state.setAccountData);
+  const [percentage, setPercentage] = useState(25);
+  const targetPercentage = 37.5;
+
+  useEffect(() => {
+    const duration = 1000;
+    const steps = 60;
+    const increment = (targetPercentage - 25) / steps;
+    const stepDuration = duration / steps;
+
+    let current = 25;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= targetPercentage) {
+        setPercentage(targetPercentage);
+        clearInterval(timer);
+      } else {
+        setPercentage(current);
+      }
+    }, stepDuration);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
@@ -86,43 +108,52 @@ export default function RegisterContent() {
       <Header />
       
       {/* Contenido Principal (Dos Columnas) */}
-      <div className="flex flex-col md:flex-row min-h-screen items-center justify-center px-8 pt-24 pb-24 gap-12">
+      <div className="flex flex-col md:flex-row min-h-screen items-center justify-center px-8 pt-24 pb-24 gap-8 md:gap-12 max-w-7xl mx-auto">
         
-        {/* === Columna Izquierda (Oso y Texto Breve) === */}
-        <div className="flex-1 flex flex-col items-center justify-center w-full md:w-1/2 max-w-lg">
-          
-          {/* Oso */}
-          <div className="w-56 h-56 md:w-72 md:h-72 mb-6">
-            <Oso /> 
+        {/* Barra de progreso superior - mejorada */}
+        <div className="absolute top-20 left-0 right-0 px-8 z-10">
+          <div className="max-w-2xl mx-auto">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs text-gray-light">
+                {tOnboarding('step', { current: 3, total: 8 })}
+              </span>
+              <span className="text-xs text-primary font-semibold">
+                {percentage.toFixed(1)}%
+              </span>
+            </div>
+            <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+              <div className="h-full bg-primary rounded-full animate-progress-step-3" style={{ width: '37.5%' }} />
+            </div>
           </div>
+        </div>
 
-          {/* Texto descriptivo compacto */}
-          <div className="text-center max-w-md">
-            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-3">
-              {t('registerWelcome')}
-            </h2>
-            <p className="text-gray-light text-sm lg:text-base">
-              {t('registerDescription')}
-            </p>
+        {/* === Columna Izquierda (Oso) === */}
+        <div className="flex-1 flex flex-col items-center justify-center w-full animate-scale-in">
+          <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72">
+            <Oso />
+            
+            {/* Efecto de brillo detrás del oso */}
+            <div className="absolute inset-0 -z-10 flex items-center justify-center">
+              <div className="w-full h-full rounded-full bg-primary/10 blur-2xl animate-pulse-glow" />
+            </div>
           </div>
         </div>
 
         {/* === Columna Derecha (Formulario) === */}
-        <div className="flex-1 flex flex-col items-center md:items-start justify-center w-full md:w-1/2 max-w-md">
-          <div className="w-full">
+        <div className="flex-1 flex flex-col items-center md:items-start justify-center w-full animate-fade-in">
+          <div className="w-full max-w-md">
             
             {/* Título del Formulario */}
             <div className="mb-6">
-              <h1 className="text-3xl lg:text-4xl font-bold text-white mb-1">
+              <h1 className="text-3xl lg:text-4xl font-bold text-white mb-1 text-center md:text-left">
                 {t('registerTitle')}
               </h1>
-              
             </div>
             
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
               
               {/* Nombre */}
-              <div>
+              <div className="animate-slide-in" style={{ animationDelay: '0.1s' }}>
                 <Input 
                   id="nombre"
                   icon={<UserIcon />}
@@ -135,7 +166,7 @@ export default function RegisterContent() {
               </div>
 
               {/* Email */}
-              <div>
+              <div className="animate-slide-in" style={{ animationDelay: '0.2s' }}>
                 <Input 
                   id="email"
                   icon={<EmailIcon />}
@@ -148,7 +179,7 @@ export default function RegisterContent() {
               </div>
               
               {/* Contraseña */}
-              <div>
+              <div className="animate-slide-in" style={{ animationDelay: '0.3s' }}>
                 <PasswordInput 
                   id="password"
                   placeholder={t('password')}
@@ -159,7 +190,7 @@ export default function RegisterContent() {
               </div>
 
               {/* Confirmar Contraseña */}
-              <div>
+              <div className="animate-slide-in" style={{ animationDelay: '0.4s' }}>
                 <PasswordInput 
                   id="confirmPassword"
                   placeholder={t('confirmPassword')}
@@ -175,14 +206,14 @@ export default function RegisterContent() {
                 </p>
               )}
 
-              <Button type="submit" variant="primary" isLoading={isLoading} className="mt-5 w-full">
-                {t('registerButton')}
-              </Button>
-
-              
+              <div className="animate-fade-in-delayed">
+                <Button type="submit" variant="primary" isLoading={isLoading} className="mt-5 w-full">
+                  {t('registerButton')}
+                </Button>
+              </div>
 
               {/* Link a login */}
-              <div className="text-center pt-4 text-gray-light">
+              <div className="text-center pt-4 text-gray-light animate-fade-in-delayed">
                   {t('alreadyHaveAccount')}{' '}
                   <Link href="/login" className="text-primary hover:text-primary/80 font-semibold">
                     {t('loginLink')}
@@ -194,6 +225,86 @@ export default function RegisterContent() {
       </div>
       
       <Footer />
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes scale-in {
+          0% {
+            opacity: 0;
+            transform: scale(0.5);
+          }
+          60% {
+            transform: scale(1.1);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes slide-in {
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes pulse-glow {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(0.95);
+          }
+          50% {
+            opacity: 0.5;
+            transform: scale(1.05);
+          }
+        }
+
+        @keyframes progress-step-3 {
+          from {
+            width: 25%;
+          }
+          to {
+            width: 37.5%;
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out;
+        }
+
+        .animate-fade-in-delayed {
+          animation: fade-in 0.8s ease-out 0.6s both;
+        }
+
+        .animate-scale-in {
+          animation: scale-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+        }
+
+        .animate-slide-in {
+          animation: slide-in 0.5s ease-out both;
+        }
+
+        .animate-pulse-glow {
+          animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .animate-progress-step-3 {
+          animation: progress-step-3 1s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 }

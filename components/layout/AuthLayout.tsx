@@ -1,4 +1,4 @@
-import Oso from './Oso'; // Asumo que Oso.tsx está en components/layout/
+import Oso from './OsoRegistro'; // Asumo que Oso.tsx está en components/layout/
 
 interface AuthLayoutProps {
   bubbleText: string;

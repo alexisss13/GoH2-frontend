@@ -50,7 +50,7 @@ export const useAuth = () => {
       setToken(res.token);
 
       // 4. Redirigir al inicio del Onboarding (Paso 1: Bienvenida)
-      router.push('/onboarding/paso-bienvenida'); 
+      router.push('/onboarding/paso-datos-basicos'); 
       
     } catch (err: any) {
       if (err.message.includes('correo ya ha sido registrado')) {

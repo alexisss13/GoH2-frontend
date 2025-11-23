@@ -19,7 +19,7 @@
     }
   },
   "Landing": {
-    "brand": "GoH3",
+    "brand": "GoH2",
     "slogan": "La forma inteligente y social de <primary>monitorear tu hidratación</primary>.",
     "ctaPrimary": "EMPIEZA AHORA",
     "ctaSecondary": "YA TENGO UNA CUENTA"
@@ -38,11 +38,11 @@
     "dontHaveAccount": "¿No tienes cuenta?",
     "loginButton": "INGRESAR",
     "registerTitle": "Crear Cuenta",
-    "registerLink":"Regístrate",
+    "registerLink": "Regístrate",
     "registerButton": "CONTINUAR",
     "registerSubtitle": "Crea tu cuenta en menos de un minuto",
-    "registerWelcome": "Comienza tu viaje hacia una vida más saludable",
-    "registerDescription": "Únete a miles de personas que ya están transformando sus hábitos de hidratación y bienestar.",
+    "registerWelcome": "¡Bienvenido a GoH2! 💧",
+    "registerDescription": "Únete a miles de personas que ya transformaron sus hábitos de hidratación",
     
     "registerBenefit1Title": "Seguimiento personalizado",
     "registerBenefit1Desc": "Monitorea tu hidratación diaria adaptada a tu estilo de vida",
@@ -102,8 +102,8 @@
     },
     "onboarding": {
       "welcomeText": "¡Hola! Yo soy Goh.",
-      "instructionText": "¡Llenemos juntos tu registro en la aplicación!",
-
+      "instructionsText": "¡Llenemos juntos tu registro en la aplicación!",
+      
       "basicDataTitle": "Cuéntanos sobre ti",
       "basicDataPrompt": "Necesitamos algunos datos básicos para personalizar tu experiencia",
       
@@ -114,7 +114,7 @@
         "Femenino": "Femenino",
         "Otro": "Otro"
       },
-
+      "step": "Paso {current} de {total}",
       "biometricTitle": "Datos biométricos",
       "biometricSubtitle": "Necesitamos estos datos para calcular tu objetivo de hidratación diaria.",
       "height": "Altura",
@@ -137,11 +137,20 @@
       "activityTitle": "Nivel de actividad",
       "activityPrompt": "¿Qué tan activo eres durante la semana?",
       "activityHelp": "Guía de niveles",
+      "activityHelpTitle": "Guía de niveles",
+      "activitySedentary": "Poco o ningún ejercicio",
+      "activityLight": "Ejercicio 1-3 días/semana",
+      "activityModerate": "Ejercicio 3-5 días/semana",
+      "activityActive": "Ejercicio 6-7 días/semana",
+      "activityVeryActive": "Ejercicio intenso diario",
 
       "finalTitle": "¡Ya casi terminamos!",
       "finalPrompt": "Revisa tu información antes de finalizar",
       "summaryTitle": "Resumen de tus datos",
-      "tip": "Consejo"
+      "summaryDescription": "Basándonos en estos datos, personalizaremos tu experiencia con recomendaciones de hidratación y hábitos saludables adaptados a tu perfil.",
+      "tip": "Consejo",
+      "successMotivation": "¡Estás listo para comenzar tu viaje hacia una mejor hidratación! 💧",
+      "goToDashboard": "IR AL DASHBOARD"
     },
 
     "continueButton": "Continuar",
