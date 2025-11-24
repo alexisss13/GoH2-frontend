@@ -2,7 +2,6 @@
 import { NextIntlClientProvider } from "next-intl";
 import { Inter } from "next/font/google";
 import { locales } from "@/i18n";
-import "../globals.css";
 import { setRequestLocale } from "next-intl/server";
 import { ReactNode, Suspense } from "react";
 import SessionSync from "@/components/layout/SessionSync";
@@ -25,15 +24,13 @@ export default async function LocaleLayout({
   const messages = (await import(`../../messages/${locale}.json`)).default;
 
   return (
-    <html lang={locale}>
-      <body className={`${inter.className} bg-black text-white min-h-screen`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <Suspense fallback={null}>
-            <SessionSync />
-          </Suspense>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <div className={`${inter.className} bg-black text-white min-h-screen`}>
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <Suspense fallback={null}>
+          <SessionSync />
+        </Suspense>
+        {children}
+      </NextIntlClientProvider>
+    </div>
   );
 }

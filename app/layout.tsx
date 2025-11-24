@@ -12,6 +12,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <head>
         <meta name="google-site-verification" content="K0I8TQOO2qpDtxLZW9xSwmbGOh3Y6zqFLgkDIyOMGak" />
+        <link 
+          rel="stylesheet" 
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" 
+        />
       </head>
       <body>{children}</body>
     </html>
