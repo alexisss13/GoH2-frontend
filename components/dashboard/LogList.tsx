@@ -6,30 +6,58 @@ import Link from 'next/link';
 import { Registro } from '@/lib/dashboardService';
 import { socialService, Comentario } from '@/lib/socialService';
 import { useAuthStore } from '@/store/authStore';
-import { GlassIcon, CoffeeIcon, ChevronDownIcon } from '../layout/Icons';
 
 interface LogListProps {
   registros: Registro[];
   showHistoryLink?: boolean;
 }
 
-const getBeverageIcon = (name: string) => {
-  const n = name.toLowerCase();
-  if (n.includes('caf') || n.includes('té')) return <CoffeeIcon className="w-6 h-6 text-white" />;
-  return <GlassIcon className="w-6 h-6 text-white" />;
+const getBeverageIcon = (nombre: string) => {
+  const n = nombre.toLowerCase();
+  
+  if (n.includes('agua')) {
+    return <span className="material-symbols-outlined text-[28px]">water_full</span>;
+  }
+  
+  if (n.includes('café')) {
+    return <span className="material-symbols-outlined text-[28px]">coffee_maker</span>;
+  }
+  
+  if (n.includes('té')) {
+    return <span className="material-symbols-outlined text-[28px]">emoji_food_beverage</span>;
+  }
+  
+  if (n.includes('jugo')) {
+    return <span className="material-symbols-outlined text-[28px]">blender</span>;
+  }
+  
+  if (n.includes('yogur')) {
+    return <span className="material-symbols-outlined text-[28px]">local_drink</span>;
+  }
+  
+  if (n.includes('cerveza') || n.includes('alcohol')) {
+    return <span className="material-symbols-outlined text-[28px]">sports_bar</span>;
+  }
+  
+  if (n.includes('refresco')) {
+    return <span className="material-symbols-outlined text-[28px]">local_drink</span>;
+  }
+  
+  // Icono por defecto para otras bebidas
+  return <span className="material-symbols-outlined text-[28px]">local_drink</span>;
 };
 
 const getBeverageColor = (name: string): string => {
   const n = name.toLowerCase();
   if (n.includes('agua')) return '#0097B2';
-  if (n.includes('café')) return '#6B4423';
-  if (n.includes('té')) return '#4A7C59';
-  if (n.includes('jugo')) return '#FF6B35';
-  if (n.includes('yogur')) return '#E84A5F';
-  if (n.includes('refresco')) return '#9B59B6';
-  if (n.includes('cerveza') && !n.includes('sin')) return '#8B4513';
-  if (n.includes('cerveza') && n.includes('sin')) return '#A0826D';
-  if (n.includes('alcohol')) return '#4A4A4A';
+  if (n.includes('café')) return '#4B3022';
+  if (n.includes('té')) return '#528B34';
+  if (n.includes('jugo')) return '#D46839';
+  if (n.includes('yogur')) return '#A84066';
+  if (n.includes('refresco')) return '#7A348B';
+  if (n.includes('cerveza') && !n.includes('sin')) return '#823514';
+  if (n.includes('cerveza') && n.includes('sin')) return '#823514';
+  if (n.includes('alcohol')) return '#4E1800';
   return '#0097B2';
 };
 
@@ -99,7 +127,7 @@ const LogItem = ({ registro }: { registro: Registro }) => {
                     </div>
 
                     <div className="flex flex-col">
-                        {/* Nombre de la bebida restaurado */}
+                        {/* Nombre de la bebida */}
                         <span className="text-white font-bold text-lg leading-tight">
                             {registro.bebida.nombre}
                         </span>
@@ -124,14 +152,16 @@ const LogItem = ({ registro }: { registro: Registro }) => {
                 <div className="flex items-center gap-4">
                     <div className="text-right">
                         <span className="block text-white font-bold text-lg">{registro.cantidadConsumidaMl}ml</span>
-                        {/* Tipo de registro restaurado */}
+                        {/* Tipo de registro */}
                         <span className="text-xs text-gray-500 font-medium uppercase tracking-wider block">
                             {registro.tipoRegistro === 'MANUAL' ? 'Manual' : 'Digital'}
                         </span>
                     </div>
                     
                     <div className={`text-gray-500 group-hover:text-white transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
-                        <ChevronDownIcon className="w-5 h-5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -174,7 +204,7 @@ const LogItem = ({ registro }: { registro: Registro }) => {
                         </div>
                     )}
 
-                    {/* Input para comentar (Opcional, si quieres que uno mismo pueda comentar sus logs) */}
+                    {/* Input para comentar */}
                     <form onSubmit={handleSubmitComment} className="flex gap-2">
                         <input 
                             type="text" 
@@ -225,7 +255,7 @@ export default function LogList({ registros, showHistoryLink = true }: LogListPr
       {registros.length === 0 && (
         <div className="text-center py-12 bg-[#1A1A1A] rounded-3xl border border-gray-800/50">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#0F0F0F] flex items-center justify-center">
-             <GlassIcon className="w-8 h-8 text-gray-600" />
+             <span className="material-symbols-outlined text-gray-600 text-[32px]">water_full</span>
           </div>
           <p className="text-white text-base font-semibold mb-1">¡Bebe agua ya mismo!</p>
           <p className="text-gray-500 text-sm">Sin registro de bebidas hoy</p>
@@ -255,5 +285,4 @@ export default function LogList({ registros, showHistoryLink = true }: LogListPr
         }
       `}</style>
     </div>
-  );
-}
+  );}
