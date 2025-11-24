@@ -4,7 +4,8 @@ import { Inter } from "next/font/google";
 import { locales } from "@/i18n";
 import "../globals.css";
 import { setRequestLocale } from "next-intl/server";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
+import SessionSync from "@/components/layout/SessionSync";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,9 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className={`${inter.className} bg-black text-white min-h-screen`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <Suspense fallback={null}>
+            <SessionSync />
+          </Suspense>
           {children}
         </NextIntlClientProvider>
       </body>
