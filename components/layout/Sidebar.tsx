@@ -4,22 +4,34 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { HomeIcon, ChartBarIcon, UserIcon, CogIcon, DropIcon } from './Icons';
+import { DropIcon } from './Icons';
 
 interface SidebarProps {
   onAddClick: () => void;
 }
+
+// Mapeo de íconos para Material Symbols
+const iconMap = {
+    '/dashboard': 'home',
+    '/resumen': 'bar_chart', 
+    '/social': 'group',
+    '/configuracion': 'settings',
+};
+
+// Clase base para los iconos de navegación (24px)
+const getIconClass = (active: boolean) => 
+    `material-symbols-outlined w-6 h-6 text-[24px] transition-colors ${active ? 'text-primary' : 'text-gray-500 group-hover:text-white'}`;
+
 
 export default function Sidebar({ onAddClick }: SidebarProps) {
   const pathname = usePathname();
   
   const isActive = (path: string) => pathname === path || pathname.startsWith(`${path}/`);
 
-  // Quitamos Configuración de la lista principal
   const navItems = [
-    { label: 'Inicio', href: '/dashboard', icon: HomeIcon },
-    { label: 'Resumen', href: '/resumen', icon: ChartBarIcon },
-    { label: 'Social', href: '/social', icon: UserIcon },
+    { label: 'Inicio', href: '/dashboard', iconName: iconMap['/dashboard'] },
+    { label: 'Resumen', href: '/resumen', iconName: iconMap['/resumen'] },
+    { label: 'Social', href: '/social', iconName: iconMap['/social'] },
   ];
 
   return (
@@ -53,7 +65,9 @@ export default function Sidebar({ onAddClick }: SidebarProps) {
                   : 'text-gray-400 hover:bg-gray-900 hover:text-white'
               }`}
             >
-              <item.icon className={`w-6 h-6 ${active ? 'text-primary' : 'text-gray-500 group-hover:text-white'}`} />
+                <span className={getIconClass(active)}>
+                    {item.iconName}
+                </span>
               <span>{item.label}</span>
             </Link>
           );
@@ -83,7 +97,9 @@ export default function Sidebar({ onAddClick }: SidebarProps) {
               : 'text-gray-400 hover:bg-gray-900 hover:text-white'
           }`}
         >
-          <CogIcon className={`w-6 h-6 ${isActive('/configuracion') ? 'text-primary' : 'text-gray-500 group-hover:text-white'}`} />
+          <span className={getIconClass(isActive('/configuracion'))}>
+            {iconMap['/configuracion']}
+          </span>
           <span>Configuración</span>
         </Link>
 

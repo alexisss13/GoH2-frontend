@@ -1,5 +1,5 @@
 // ====================================
-// DashboardHero.tsx - Hero mejorado con Material Symbols
+// DashboardHero.tsx - Hero mejorado con padding lateral
 // ====================================
 'use client';
 
@@ -126,7 +126,7 @@ export default function DashboardHero({ consumed, goal }: DashboardHeroProps) {
         </>
       )}
 
-      <div className="relative px-6 pt-6 pb-12 z-10">
+      <div className="relative px-6 lg:px-12 pt-6 lg:pt-8 pb-12 lg:pb-16 z-10">
         {/* Mensaje motivacional */}
         {state === 'complete' && (
           <div className="text-center mb-4">

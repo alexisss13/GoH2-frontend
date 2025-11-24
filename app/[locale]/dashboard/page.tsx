@@ -1,6 +1,4 @@
-// ====================================
-// 1. app/[locale]/dashboard/page.tsx
-// ====================================
+// app/[locale]/dashboard/page.tsx - Con gradiente dinámico mejorado
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -26,6 +24,72 @@ export default function DashboardPage() {
   const [selectedBebidaId, setSelectedBebidaId] = useState<string | null>(null);
   const [amount, setAmount] = useState(250);
   const [isAdding, setIsAdding] = useState(false);
+
+  // Determinar el estado basado en el consumo (igual que en DashboardHero)
+  const getBackgroundGradient = () => {
+    const percentage = resumen.objetivoMl > 0 ? Math.min((resumen.consumidoMl / resumen.objetivoMl) * 100, 100) : 0;
+    
+    if (resumen.consumidoMl === 0) {
+      // Danger - Rojo intenso con efecto calor
+      return 'linear-gradient(to bottom, #8B0000 0%, #DC143C 15%, #B22222 30%, #000000 70%, #000000 100%)';
+    }
+    if (percentage < 50) {
+      // Warning - Azul oscuro profundo
+      return 'linear-gradient(to bottom, #004A5E 0%, #006B7D 15%, #008099 30%, #000000 70%, #000000 100%)';
+    }
+    if (percentage >= 100) {
+      // Complete - Dorado radiante
+      return 'linear-gradient(to bottom, #D4AF37 0%, #FFD700 15%, #FFA500 30%, #000000 70%, #000000 100%)';
+    }
+    // Success - Azul vibrante
+    return 'linear-gradient(to bottom, #007C91 0%, #0097B2 15%, #00B4D8 30%, #000000 70%, #000000 100%)';
+  };
+
+  // Efecto de partículas dinámicas basado en el estado
+  const getParticleEffect = () => {
+    const percentage = resumen.objetivoMl > 0 ? Math.min((resumen.consumidoMl / resumen.objetivoMl) * 100, 100) : 0;
+    
+    if (resumen.consumidoMl === 0) {
+      return (
+        <>
+          {/* Partículas de calor/fuego */}
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-orange-400/60 animate-float-slow"></div>
+          <div className="absolute top-1/3 right-1/3 w-3 h-3 rounded-full bg-red-400/50 animate-float-delayed"></div>
+          <div className="absolute top-1/2 left-1/3 w-1 h-1 rounded-full bg-yellow-300/40 animate-float"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-2 h-2 rounded-full bg-orange-500/60 animate-float-slow"></div>
+        </>
+      );
+    }
+    if (percentage < 50) {
+      return (
+        <>
+          {/* Burbujas azules */}
+          <div className="absolute top-1/4 left-1/4 w-3 h-3 rounded-full bg-cyan-400/30 animate-float"></div>
+          <div className="absolute top-1/3 right-1/3 w-4 h-4 rounded-full bg-blue-300/20 animate-float-delayed"></div>
+          <div className="absolute bottom-1/3 left-1/2 w-2 h-2 rounded-full bg-teal-400/25 animate-float-slow"></div>
+        </>
+      );
+    }
+    if (percentage >= 100) {
+      return (
+        <>
+          {/* Partículas doradas de celebración */}
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-yellow-300/60 animate-sparkle-1"></div>
+          <div className="absolute top-1/3 right-1/3 w-3 h-3 rounded-full bg-amber-400/50 animate-sparkle-2"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-1 h-1 rounded-full bg-orange-300/70 animate-sparkle-3"></div>
+          <div className="absolute top-1/2 right-1/4 w-2 h-2 rounded-full bg-yellow-200/60 animate-sparkle-1"></div>
+        </>
+      );
+    }
+    // Success - Más burbujas
+    return (
+      <>
+        <div className="absolute top-1/4 left-1/3 w-4 h-4 rounded-full bg-cyan-300/40 animate-float"></div>
+        <div className="absolute top-1/2 right-1/4 w-3 h-3 rounded-full bg-blue-200/30 animate-float-delayed"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-5 h-5 rounded-full bg-teal-300/25 animate-float-slow"></div>
+      </>
+    );
+  };
 
   useEffect(() => {
     if (!token) {
@@ -92,8 +156,19 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout onAddClick={handleAddClick}>
+      {/* Fondo con gradiente dinámico mejorado - ocupa toda la pantalla */}
+      <div 
+        className="fixed inset-0 -z-10 transition-all duration-1000"
+        style={{ background: getBackgroundGradient() }}
+      >
+        {/* Efectos de partículas dinámicas */}
+        {getParticleEffect()}
+        
+        {/* Overlay sutil para mejorar legibilidad */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20"></div>
+      </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col relative z-10">
         {/* Hero Section */}
         <DashboardHero
           consumed={resumen.consumidoMl}
@@ -217,21 +292,81 @@ export default function DashboardPage() {
       )}
 
       <style jsx>{`
-  @keyframes slide-up {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
+        @keyframes slide-up {
+          from {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
 
-  .animate-slide-up {
-    animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-`}</style>
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+          50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+
+        @keyframes float-delayed {
+          0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+          50% { transform: translateY(-15px) rotate(90deg); opacity: 0.9; }
+        }
+
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) scale(1); opacity: 0.5; }
+          50% { transform: translateY(-25px) scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes sparkle-1 {
+          0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 0.5; }
+          100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
+        }
+
+        @keyframes sparkle-2 {
+          0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
+          30% { opacity: 1; }
+          70% { opacity: 0.7; }
+          100% { transform: translateY(-35px) scale(1.3); opacity: 0; }
+        }
+
+        @keyframes sparkle-3 {
+          0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
+          40% { opacity: 1; }
+          60% { opacity: 0.8; }
+          100% { transform: translateY(-45px) scale(1.4); opacity: 0; }
+        }
+
+        .animate-slide-up {
+          animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .animate-float {
+          animation: float 8s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+          animation: float-delayed 10s ease-in-out infinite 2s;
+        }
+
+        .animate-float-slow {
+          animation: float-slow 12s ease-in-out infinite 1s;
+        }
+
+        .animate-sparkle-1 {
+          animation: sparkle-1 4s ease-out infinite;
+        }
+
+        .animate-sparkle-2 {
+          animation: sparkle-2 5s ease-out infinite 1s;
+        }
+
+        .animate-sparkle-3 {
+          animation: sparkle-3 6s ease-out infinite 2s;
+        }
+      `}</style>
     </DashboardLayout>
   );
 }

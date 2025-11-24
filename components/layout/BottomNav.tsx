@@ -3,11 +3,17 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { HomeIcon, ChartBarIcon, DropIcon, UserIcon, CogIcon } from './Icons';
+// Eliminamos la importación de iconos SVG
+// import { HomeIcon, ChartBarIcon, DropIcon, UserIcon, CogIcon } from './Icons'; 
 
 interface BottomNavProps {
     onAddClick: () => void;
 }
+
+// Helper para iconos de Material Symbols
+const Icon = ({ name, className }: { name: string, className?: string }) => (
+    <span className={`material-symbols-outlined ${className}`}>{name}</span>
+);
 
 export default function BottomNav({ onAddClick }: BottomNavProps) {
   const pathname = usePathname();
@@ -15,13 +21,13 @@ export default function BottomNav({ onAddClick }: BottomNavProps) {
   const isActive = (path: string) => pathname === path || pathname.startsWith(`${path}/`);
 
   const items = [
-    { label: 'Inicio', href: '/dashboard', icon: HomeIcon },
-    { label: 'Resumen', href: '/resumen', icon: ChartBarIcon },
+    { label: 'Inicio', href: '/dashboard', iconName: 'home' },
+    { label: 'Resumen', href: '/resumen', iconName: 'bar_chart' },
   ];
 
   const itemsRight = [
-    { label: 'Social', href: '/social', icon: UserIcon },
-    { label: 'Config', href: '/configuracion', icon: CogIcon },
+    { label: 'Social', href: '/social', iconName: 'group' },
+    { label: 'Config', href: '/configuracion', iconName: 'settings' },
   ];
 
   const linkBaseClass = "flex flex-col items-center justify-center gap-1 w-16 transition-colors duration-200";
@@ -35,7 +41,7 @@ export default function BottomNav({ onAddClick }: BottomNavProps) {
         {/* Left Items */}
         {items.map((item) => (
           <Link key={item.href} href={item.href} className={`${linkBaseClass} ${isActive(item.href) ? activeClass : inactiveClass}`}>
-            <item.icon className="w-6 h-6" />
+            <Icon name={item.iconName} className="w-6 h-6 text-[24px]" />
             <span className="text-[10px] font-medium">{item.label}</span>
           </Link>
         ))}
@@ -48,14 +54,14 @@ export default function BottomNav({ onAddClick }: BottomNavProps) {
             onClick={onAddClick}
             className="absolute left-1/2 -translate-x-1/2 -top-8 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,151,178,0.5)] hover:scale-105 transition-transform z-10 border-4 border-black"
         >
-            <DropIcon className="w-8 h-8 text-white" />
+            <Icon name="water_drop" className="w-8 h-8 text-white text-[32px]" />
             <span className="absolute -right-1 -bottom-1 bg-white text-primary font-bold text-[10px] rounded-full w-4 h-4 flex items-center justify-center">+</span>
         </button>
 
         {/* Right Items */}
         {itemsRight.map((item) => (
           <Link key={item.href} href={item.href} className={`${linkBaseClass} ${isActive(item.href) ? activeClass : inactiveClass}`}>
-            <item.icon className="w-6 h-6" />
+            <Icon name={item.iconName} className="w-6 h-6 text-[24px]" />
             <span className="text-[10px] font-medium">{item.label}</span>
           </Link>
         ))}
